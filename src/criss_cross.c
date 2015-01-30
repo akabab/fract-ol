@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   criss_cross.c                                      :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: ycribier <ycribier@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/01/27 15:18:38 by jspezia           #+#    #+#             */
-/*   Updated: 2015/01/30 11:17:07 by ycribier         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "fract.h"
 
 int			fractal_julia(int x, int y, t_env *e)
@@ -34,8 +22,6 @@ int			fractal_julia(int x, int y, t_env *e)
 		coord_x = a + e->c->x;
 		coord_y = b + e->c->y;
 		color -= 0x020202;
-		if (color == 0)
-			color = 0xeeeeee;
 		i++;
 	}
 	return (color);

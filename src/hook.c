@@ -1,21 +1,11 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   hook.c                                             :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: ycribier <ycribier@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/01/30 11:30:55 by ycribier          #+#    #+#             */
-/*   Updated: 2015/01/30 11:54:20 by ycribier         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "fract.h"
 
 int		pointer_motion_hook(int x, int y, t_env *e)
 {
-	(void)e;
+	e->c->x = (double)x / (W_WIDTH);
+	e->c->y = (double)y / (W_HEIGHT);
 	printf("Mouse at %d, %d\n", x, y);
+	printf("c-x = %f, c-y = %f\n", e->c->x, e->c->y);
 	return (0);
 }
 
@@ -35,7 +25,10 @@ int		key_hook(int keycode, t_env *e)
 
 int		mouse_hook(int button, int x, int y, t_env *e)
 {
-	(void)e;
+	if (button == 4)
+		e->zoom /= 2;
+	if (button == 5)
+		e->zoom *= 2;
 	printf("Mouse code: [%d] at (%d, %d)\n", button, x, y);
 	return (0);
 }
