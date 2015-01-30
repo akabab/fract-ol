@@ -1,18 +1,16 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   fract.h                                            :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: ycribier <ycribier@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/01/28 15:01:51 by jspezia           #+#    #+#             */
-/*   Updated: 2015/01/30 12:24:43 by jspezia          ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
+
 
 #ifndef FRACT_H
 # define FRACT_H
 
+# include "libft.h"
+# include <stdlib.h>
+# include <stdio.h>
+# include <string.h>
+# include <mlx.h>
+# include </usr/X11R6/include/X11/X.h>
+# include <unistd.h>
+# include <X11/Xutil.h>
 
 # define W_HEIGHT	800
 # define W_WIDTH	800
@@ -26,20 +24,10 @@
 # define KEY_MORE	65451
 # define KEY_LESS	65453
 # define KEY_SPACE	32
+# define KEY_W		119
 # define KEY_A		97
 # define KEY_S		115
 # define KEY_D		100
-# define KEY_W		119
-
-#include "libft.h"
-
-#include <stdlib.h>
-#include <stdio.h>
-#include <string.h>
-#include <mlx.h>
-#include </usr/X11R6/include/X11/X.h>
-#include <unistd.h>
-#include <X11/Xutil.h>
 
 typedef struct		s_img
 {
@@ -65,7 +53,6 @@ typedef struct		s_pt
 	double			x;
 	double			y;
 }					t_pt;
-
 
 typedef struct		s_env
 {

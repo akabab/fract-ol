@@ -6,16 +6,14 @@
 /*   By: ycribier <ycribier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/16 12:44:42 by ycribier          #+#    #+#             */
-/*   Updated: 2015/01/30 10:44:03 by ycribier         ###   ########.fr       */
+/*   Updated: 2015/01/30 11:53:36 by ycribier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-#include <stdio.h> //
 #include "fract.h"
 
-# define RANGE_C		0.02
-# define RANGE_ORIGIN	10
+#define RANGE_C			0.02
+#define RANGE_ORIGIN	10
 
 int		key_release(int keycode, t_env *e)
 {
@@ -29,7 +27,6 @@ int		key_release(int keycode, t_env *e)
 		e->keys->down = FALSE;
 	if (keycode == KEY_ESC)
 		exit(0);
-
 
 	/* tmp */
 	if (keycode == KEY_A)
@@ -52,7 +49,7 @@ int		key_release(int keycode, t_env *e)
 		printf("origine = %f, %f\n", e->origin->x, e->origin->y);
 		printf("******************\n");
 	}
-
+	printf("Key (released) code: [%d]\n", keycode);
 	return (0);
 }
 
@@ -69,6 +66,7 @@ int		key_press(int keycode, t_env *e)
 	// if (keycode == KEY_SHIFT)
 	// if (keycode == KEY_MORE)
 	// if (keycode == KEY_LESS)
+	printf("Key (pressed) code: [%d]\n", keycode);
 	return (0);
 }
 
