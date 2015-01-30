@@ -6,7 +6,7 @@
 /*   By: ycribier <ycribier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/30 11:30:55 by ycribier          #+#    #+#             */
-/*   Updated: 2015/01/30 11:48:45 by ycribier         ###   ########.fr       */
+/*   Updated: 2015/01/30 11:54:20 by ycribier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ int		expose_hook(t_env *e)
 
 int		key_hook(int keycode, t_env *e)
 {
+	//useless -- overwritten by key_pressed & key_released
 	(void)e;
 	printf("Key (released) code: [%d]\n", keycode);
 	return (0);
