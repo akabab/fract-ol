@@ -6,7 +6,7 @@
 /*   By: ycribier <ycribier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/28 15:01:51 by jspezia           #+#    #+#             */
-/*   Updated: 2015/01/30 11:33:58 by ycribier         ###   ########.fr       */
+/*   Updated: 2015/01/30 11:45:52 by ycribier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,5 +96,14 @@ t_keys		*init_keys(void);
 **		draw.c
 */
 void		my_pixel_put_to_image(t_img *img, int x, int y, int color);
+
+/*
+**		hook.c
+*/
+int			pointer_motion_hook(int x, int y, t_env *e);
+int			expose_hook(t_env *e);
+int			key_hook(int keycode, t_env *e);
+int			mouse_hook(int button, int x, int y, t_env *e);
+int			loop_hook(t_env *e);
 
 #endif

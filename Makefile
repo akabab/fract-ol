@@ -6,7 +6,7 @@
 #    By: ycribier <ycribier@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2013/11/23 19:10:49 by jspezia           #+#    #+#              #
-#    Updated: 2015/01/30 11:37:52 by ycribier         ###   ########.fr        #
+#    Updated: 2015/01/30 11:47:09 by ycribier         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,6 +30,7 @@ NAME		= exec
 SRC			= main.c						\
 			  criss_cross.c					\
 			  draw.c						\
+			  hook.c						\
 			  keys.c
 
 CFILE		= $(patsubst %,$(CPATH)/%, $(SRC))

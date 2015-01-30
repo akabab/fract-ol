@@ -6,26 +6,11 @@
 /*   By: ycribier <ycribier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/27 15:18:38 by jspezia           #+#    #+#             */
-/*   Updated: 2015/01/30 11:39:20 by ycribier         ###   ########.fr       */
+/*   Updated: 2015/01/30 11:48:29 by ycribier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fract.h"
-
-static int	pointer_motion_hook(int x, int y, t_env *e)
-{
-	(void)e;
-	printf("Mouse at %d, %d\n", x, y);
-	return (0);
-}
-
-int			loop_hook(t_env *e)
-{
-	manage_keys(e);
-	criss_cross(e, &fractal_julia);
-	mlx_put_image_to_window(e->mlx, e->win, e->img->id, 0, 0);
-	return (0);
-}
 
 t_img		*create_new_image(t_env *e, int width, int height)
 {
@@ -73,6 +58,9 @@ int			main()
 	t_env		*e;
 
 	e = init_env();
+	mlx_expose_hook(e->win, &expose_hook, e);
+	mlx_key_hook(e->win, &key_hook, e);
+	mlx_mouse_hook(e->win, &mouse_hook, e);
 	mlx_hook(e->win, KeyPress, KeyPressMask, &key_press, e);
 	mlx_hook(e->win, KeyRelease, KeyReleaseMask, &key_release, e);
 	mlx_hook(e->win, MotionNotify, PointerMotionMask, pointer_motion_hook, &e);
