@@ -6,7 +6,7 @@
 /*   By: ycribier <ycribier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/28 15:01:51 by jspezia           #+#    #+#             */
-/*   Updated: 2015/01/30 11:56:12 by ycribier         ###   ########.fr       */
+/*   Updated: 2015/01/30 12:02:21 by ycribier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@
 # define KEY_A		97
 # define KEY_S		115
 # define KEY_D		100
+
 
 typedef struct		s_img
 {
