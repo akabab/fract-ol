@@ -6,7 +6,7 @@
 /*   By: ycribier <ycribier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/28 15:01:51 by jspezia           #+#    #+#             */
-/*   Updated: 2015/01/30 12:03:39 by ycribier         ###   ########.fr       */
+/*   Updated: 2015/01/30 12:05:46 by ycribier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@
 # include <stdlib.h>
 # include <stdio.h>
 # include <string.h>
+# include <unistd.h>
 # include <mlx.h>
 # include </usr/X11R6/include/X11/X.h>
-# include <unistd.h>
 # include <X11/Xutil.h>
 
 # define W_HEIGHT	800
