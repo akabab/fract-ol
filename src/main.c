@@ -41,11 +41,16 @@ t_env		*init_env(void)
 	return (e);
 }
 
+t_fract		g_fract;
+
 int			main()
 {
 	t_env		*e;
 
 	e = init_env();
+
+	g_fract.histogram = (int *)malloc(sizeof(int) * N_ITER);
+
 	mlx_expose_hook(e->win, &expose_hook, e);
 	mlx_key_hook(e->win, &key_hook, e);
 	mlx_mouse_hook(e->win, &mouse_hook, e);

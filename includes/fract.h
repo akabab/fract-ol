@@ -10,8 +10,8 @@
 # include </usr/X11R6/include/X11/X.h>
 # include <X11/Xutil.h>
 
-# define W_HEIGHT	800
 # define W_WIDTH	800
+# define W_HEIGHT	800
 
 # define KEY_UP		65362
 # define KEY_DOWN	65364
@@ -26,6 +26,8 @@
 # define KEY_A		97
 # define KEY_S		115
 # define KEY_D		100
+
+# define N_ITER		256
 
 typedef struct		s_img
 {
@@ -63,6 +65,11 @@ typedef struct		s_env
 	double			zoom;
 }					t_env;
 
+typedef struct		s_fract
+{
+	int				*histogram;
+}					t_fract;
+
 /*
 **		criss_cross.c
 */
@@ -90,5 +97,7 @@ int			expose_hook(t_env *e);
 int			key_hook(int keycode, t_env *e);
 int			mouse_hook(int button, int x, int y, t_env *e);
 int			loop_hook(t_env *e);
+
+void		displayHistogram();
 
 #endif

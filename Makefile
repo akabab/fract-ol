@@ -10,7 +10,7 @@ MLXPATH		= /usr/X11/lib
 MLX			= $(MLXPATH) -lXext -lX11 -lmlx
 
 CC			= gcc $(FLAGS) $(XFLAGS)
-FLAGS		= -Wall -Werror -Wextra
+FLAGS		= #-Wall -Werror -Wextra
 XFLAGS		= -g -O2
 
 NAME		= exec
