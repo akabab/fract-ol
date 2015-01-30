@@ -6,7 +6,7 @@
 /*   By: ycribier <ycribier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/27 15:18:38 by jspezia           #+#    #+#             */
-/*   Updated: 2015/01/30 11:48:29 by ycribier         ###   ########.fr       */
+/*   Updated: 2015/01/30 12:24:46 by jspezia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ int			main()
 	mlx_mouse_hook(e->win, &mouse_hook, e);
 	mlx_hook(e->win, KeyPress, KeyPressMask, &key_press, e);
 	mlx_hook(e->win, KeyRelease, KeyReleaseMask, &key_release, e);
-	mlx_hook(e->win, MotionNotify, PointerMotionMask, pointer_motion_hook, &e);
+	mlx_hook(e->win, MotionNotify, PointerMotionMask, pointer_motion_hook, e);
 	mlx_loop_hook(e->mlx, &loop_hook, e);
 	mlx_loop(e->mlx);
 	return (0);
