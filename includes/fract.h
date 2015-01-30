@@ -104,5 +104,9 @@ t_Z		*coord_to_z(int x, int y, t_env *e);
 double	Z_a(int x, t_env *e);
 double	Z_bi(int y, t_env *e);
 
+/*
+**		tools.c
+*/
+double		ft_abs_double(double n);
 
 #endif

@@ -11,13 +11,13 @@ int			fractal_julia(int x, int y, t_env *e)
 	a = Z_a(x, e);
 	bi = Z_bi(y, e);
 	i = 0;
-	color = 0xeeeeee;
+	color = 0x000000;
 	while ((a * a + bi * bi) <= 4 && i < 256)
 	{
 		cp = a;
 		a = a * a - bi * bi + e->c->a;
 		bi = 2 * cp * bi + e->c->bi;
-		color -= 0x020202;
+		color += 0x000202;
 		i++;
 	}
 	return (color);

@@ -20,7 +20,8 @@ SRC			= main.c						\
 			  draw.c						\
 			  hook.c						\
 			  keys.c						\
-			  complexe.c
+			  complexe.c					\
+			  tools.c
 
 CFILE		= $(patsubst %,$(CPATH)/%, $(SRC))
 OFILE		= $(patsubst %.c,$(OPATH)/%.o, $(SRC))
