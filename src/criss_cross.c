@@ -3,24 +3,20 @@
 int			fractal_julia(int x, int y, t_env *e)
 {
 	int		color;
-	double	coord_x;
-	double	coord_y;
-	double	a;
-	double	b;
 	int		i;
+	double	a;
+	double	bi;
+	double	cp;
 
-	color = 0xeeeeee;
-	coord_x = (((((double)x + 1) - (W_WIDTH / 2 + e->origin->x))
-			/ (W_WIDTH / 2))) * e->zoom;
-	coord_y = ((((((double)y + 1) - (W_HEIGHT / 2 - e->origin->y)) * -1)
-			/ (W_HEIGHT / 2))) * e->zoom;
+	a = Z_a(x, e);
+	bi = Z_bi(y, e);
 	i = 0;
-	while ((coord_x * coord_x + coord_y * coord_y) <= 4 && i < 256)
+	color = 0xeeeeee;
+	while ((a * a + bi * bi) <= 4 && i < 256)
 	{
-		a = coord_x * coord_x - coord_y * coord_y;
-		b = 2 * coord_x * coord_y;
-		coord_x = a + e->c->x;
-		coord_y = b + e->c->y;
+		cp = a;
+		a = a * a - bi * bi + e->c->a;
+		bi = 2 * cp * bi + e->c->bi;
 		color -= 0x020202;
 		i++;
 	}

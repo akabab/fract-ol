@@ -2,10 +2,10 @@
 
 int		pointer_motion_hook(int x, int y, t_env *e)
 {
-	e->c->x = (double)x / (W_WIDTH);
-	e->c->y = (double)y / (W_HEIGHT);
+	e->c->a = Z_a(x, e);
+	e->c->bi = Z_bi(y, e);
 	printf("Mouse at %d, %d\n", x, y);
-	printf("c-x = %f, c-y = %f\n", e->c->x, e->c->y);
+	printf("c-x = %f, c-y = %f\n", e->c->a, e->c->bi);
 	return (0);
 }
 

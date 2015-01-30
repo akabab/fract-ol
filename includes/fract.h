@@ -46,11 +46,17 @@ typedef struct		s_keys
 	t_bool			left;
 }					t_keys;
 
-typedef struct		s_pt
+typedef struct		s_Z
 {
-	double			x;
-	double			y;
-}					t_pt;
+	double			a;
+	double			bi;
+}					t_Z;
+
+typedef struct		s_coord
+{
+	int				x;
+	int				y;
+}					t_coord;
 
 typedef struct		s_env
 {
@@ -58,8 +64,8 @@ typedef struct		s_env
 	void			*win;
 	t_img			*img;
 	t_keys			*keys;
-	t_pt			*c;
-	t_pt			*origin;
+	t_Z				*c;
+	t_Z				*origin;
 	double			zoom;
 }					t_env;
 
@@ -90,5 +96,13 @@ int			expose_hook(t_env *e);
 int			key_hook(int keycode, t_env *e);
 int			mouse_hook(int button, int x, int y, t_env *e);
 int			loop_hook(t_env *e);
+
+/*
+**		complexe.c
+*/
+t_Z		*coord_to_z(int x, int y, t_env *e);
+double	Z_a(int x, t_env *e);
+double	Z_bi(int y, t_env *e);
+
 
 #endif

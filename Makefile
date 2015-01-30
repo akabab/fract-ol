@@ -19,7 +19,8 @@ SRC			= main.c						\
 			  criss_cross.c					\
 			  draw.c						\
 			  hook.c						\
-			  keys.c
+			  keys.c						\
+			  complexe.c
 
 CFILE		= $(patsubst %,$(CPATH)/%, $(SRC))
 OFILE		= $(patsubst %.c,$(OPATH)/%.o, $(SRC))
