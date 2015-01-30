@@ -6,7 +6,7 @@
 /*   By: ycribier <ycribier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/28 15:01:51 by jspezia           #+#    #+#             */
-/*   Updated: 2015/01/30 11:17:42 by ycribier         ###   ########.fr       */
+/*   Updated: 2015/01/30 11:33:58 by ycribier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@
 #include <mlx.h>
 #include </usr/X11R6/include/X11/X.h>
 #include <unistd.h>
-
+#include <X11/Xutil.h>
 
 typedef struct		s_img
 {

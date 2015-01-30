@@ -6,7 +6,7 @@
 #    By: ycribier <ycribier@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2013/11/23 19:10:49 by jspezia           #+#    #+#              #
-#    Updated: 2015/01/30 11:14:51 by ycribier         ###   ########.fr        #
+#    Updated: 2015/01/30 11:37:52 by ycribier         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -55,7 +55,7 @@ $(OPATH):
 
 $(OPATH)/%.o: $(CPATH)/%.c
 	@echo "Creating file $@"
-	@$(CC) -o $@ -c $^ -I $(HPATH) -I $(HLIB)
+	@$(CC) -o $@ -c $^ -I $(HPATH) -I $(HLIB) -I /usr/X11/include
 
 clean:
 	@echo "Deletion of building directory"
