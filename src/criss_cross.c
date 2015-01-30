@@ -54,35 +54,31 @@ void		displayHistogram()
 int			fractal_julia(int x, int y, t_env *e)
 {
 	int		color;
-	double	coord_x;
-	double	coord_y;
-	double	a;
-	double	b;
 	int		i;
+	double	a;
+	double	bi;
+	double	cp;
 
 	t_color	col;
 	col.r = 1.0;
 	col.g = 1.0;
 	col.b = 1.0;
 	color = rgbToHex(col.r, col.g, col.b);
-	coord_x = (((((double)x + 1) - (W_WIDTH / 2 + e->origin->x))
-			/ (W_WIDTH / 2))) * e->zoom;
-	coord_y = ((((((double)y + 1) - (W_HEIGHT / 2 - e->origin->y)) * -1)
-			/ (W_HEIGHT / 2))) * e->zoom;
+
+	a = Z_a(x, e);
+	bi = Z_bi(y, e);
 	i = 0;
-	while ((coord_x * coord_x + coord_y * coord_y) <= 4 && i < 256)
+	while ((a * a + bi * bi) <= 4 && i < 256)
 	{
-		a = coord_x * coord_x - coord_y * coord_y;
-		b = 2 * coord_x * coord_y;
-		coord_x = a + e->c->x;
-		coord_y = b + e->c->y;
+		cp = a;
+		a = a * a - bi * bi + e->c->a;
+		bi = 2 * cp * bi + e->c->bi;
 		i++;
 	}
 	g_fract.histogram[i]++;
 	col.r = (float)(i % 5) / 5;
 	col.b = (float)(i % 30) / 30;
 	color = rgbToHex(1.0 - col.r, 0.0, 1.0 - col.b);
-	// printf("%x\n", color);
 	return (color);
 }
 

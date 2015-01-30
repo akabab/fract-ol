@@ -2,8 +2,8 @@
 
 int		pointer_motion_hook(int x, int y, t_env *e)
 {
-	e->c->x = (double)x / (W_WIDTH);
-	e->c->y = (double)y / (W_HEIGHT);
+	e->c->a = Z_a(x, e);
+	e->c->bi = Z_bi(y, e);
 	//printf("Mouse at %d, %d\n", x, y);
 	//printf("c-x = %f, c-y = %f\n", e->c->x, e->c->y);
 	return (0);
@@ -25,13 +25,21 @@ int		key_hook(int keycode, t_env *e)
 
 int		mouse_hook(int button, int x, int y, t_env *e)
 {
+	double		a;
+	double		bi;
+
+	a = Z_a(x, e);
+	bi = Z_bi(y, e);
+	(void)a;
+	(void)bi;
 	if (button == 4)
-		e->zoom /= 2;
+		e->zoom *= 0.5;
 	if (button == 5)
-		e->zoom *= 2;
+		e->zoom *= 2.0;
 	if (button == 3)
 		displayHistogram();
 	//printf("Mouse code: [%d] at (%d, %d)\n", button, x, y);
+	//printf("origine : (%fx, %fy)\n", e->origin->a, e->origin->bi);
 	return (0);
 }
 

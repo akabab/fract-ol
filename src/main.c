@@ -29,14 +29,14 @@ t_env		*init_env(void)
 		exit(-1);
 	if (!(e->keys = init_keys()))
 		exit(-1);
-	if (!(e->c = malloc(sizeof(t_pt))))
+	if (!(e->c = malloc(sizeof(t_Z))))
 		exit(-1);
-	if (!(e->origin = malloc(sizeof(t_pt))))
+	if (!(e->origin = malloc(sizeof(t_Z))))
 		exit(-1);
-	e->c->x = 0.0;
-	e->c->y = 0.6;
-	e->origin->x = 0.0;
-	e->origin->y = 0.0;
+	e->c->a = 0.0;
+	e->c->bi = 0.6;
+	e->origin->a = 0;
+	e->origin->bi = 0;
 	e->zoom = 1.0;
 	return (e);
 }
