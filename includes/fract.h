@@ -81,6 +81,7 @@ typedef struct		s_fract
 */
 void		criss_cross(t_env *e, int (*ft)(int, int, t_env *));
 int			fractal_julia(int x, int y, t_env *e);
+int			fractal_mandelbrot(int x, int y, t_env *e);
 
 /*
 **		keys.c

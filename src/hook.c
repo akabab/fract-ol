@@ -38,8 +38,9 @@ int		mouse_hook(int button, int x, int y, t_env *e)
 		e->zoom *= 2.0;
 	if (button == 3)
 		displayHistogram();
-	//printf("Mouse code: [%d] at (%d, %d)\n", button, x, y);
-	//printf("origine : (%fx, %fy)\n", e->origin->a, e->origin->bi);
+	printf("Mouse code: [%d] at (%d, %d)\n", button, x, y);
+	printf("point : (%fa, %fbi)\n", a, bi);
+	printf("origine : (%fx, %fy)\n", e->origin->a, e->origin->bi);
 	return (0);
 }
 
