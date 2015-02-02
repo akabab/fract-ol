@@ -34,7 +34,7 @@ t_env		*init_env(void)
 	if (!(e->origin = malloc(sizeof(t_Z))))
 		exit(-1);
 	e->c->a = 0.0;
-	e->c->bi = 0.6;
+	e->c->bi = 0.0;
 	e->origin->a = 0;
 	e->origin->bi = 0;
 	e->zoom = 1.0;

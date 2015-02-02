@@ -18,13 +18,13 @@ int		key_release(int keycode, t_env *e)
 
 	/* tmp */
 	if (keycode == KEY_A)
-		e->origin->a -= RANGE_ORIGIN;
+		e->origin->a -= RANGE_ORIGIN * e->zoom;
 	if (keycode == KEY_D)
-		e->origin->a += RANGE_ORIGIN;
+		e->origin->a += RANGE_ORIGIN * e->zoom;
 	if (keycode == KEY_W)
-		e->origin->bi += RANGE_ORIGIN;
+		e->origin->bi += RANGE_ORIGIN * e->zoom;
 	if (keycode == KEY_S)
-		e->origin->bi -= RANGE_ORIGIN;
+		e->origin->bi -= RANGE_ORIGIN * e->zoom;
 	if (keycode == KEY_MORE)
 		e->zoom *= 2;
 	if (keycode == KEY_LESS)

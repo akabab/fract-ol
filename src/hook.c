@@ -32,10 +32,25 @@ int		mouse_hook(int button, int x, int y, t_env *e)
 	bi = Z_bi(y, e);
 	(void)a;
 	(void)bi;
+
+	double		new_a;
+	double		new_bi;
 	if (button == 4)
-		e->zoom *= 0.5;
+	{
+		e->zoom *= 0.90;
+		new_a = Z_a(x, e);
+		new_bi = Z_bi(y, e);
+		e->origin->a -= new_a - a;
+		e->origin->bi -= new_bi - bi;
+	}
 	if (button == 5)
-		e->zoom *= 2.0;
+	{
+		e->zoom *= 1.1;
+		new_a = Z_a(x, e);
+		new_bi = Z_bi(y, e);
+		e->origin->a -= new_a - a;
+		e->origin->bi -= new_bi - bi;
+	}
 	if (button == 3)
 		displayHistogram();
 	printf("Mouse code: [%d] at (%d, %d)\n", button, x, y);
