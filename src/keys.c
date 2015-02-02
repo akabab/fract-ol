@@ -1,8 +1,5 @@
 #include "fract.h"
 
-#define RANGE_C			0.02
-#define RANGE_ORIGIN	0.05
-
 int		key_release(int keycode, t_env *e)
 {
 	if (keycode == KEY_RIGHT)
@@ -15,20 +12,19 @@ int		key_release(int keycode, t_env *e)
 		e->keys->down = FALSE;
 	if (keycode == KEY_ESC)
 		exit(0);
-
-	/* tmp */
-	if (keycode == KEY_A)
-		e->origin->a -= RANGE_ORIGIN * e->zoom;
-	if (keycode == KEY_D)
-		e->origin->a += RANGE_ORIGIN * e->zoom;
-	if (keycode == KEY_W)
-		e->origin->bi += RANGE_ORIGIN * e->zoom;
-	if (keycode == KEY_S)
-		e->origin->bi -= RANGE_ORIGIN * e->zoom;
 	if (keycode == KEY_MORE)
-		e->zoom *= 2;
+		e->zoom *= ZOOM_IN_FACTOR;
 	if (keycode == KEY_LESS)
-		e->zoom /= 2;
+		e->zoom *= ZOOM_OUT_FACTOR;
+	if (keycode == KEY_RESET)
+	{
+		e->c->a = 0.0;
+		e->c->bi = 0.0;
+		e->origin->a = 0.0;
+		e->origin->bi = 0.0;
+		e->zoom = 1.0;
+	}
+
 	if (keycode == KEY_SPACE)
 	{
 		printf("\n******************\n");
@@ -51,9 +47,6 @@ int		key_press(int keycode, t_env *e)
 		e->keys->up = TRUE;
 	if (keycode == KEY_DOWN)
 		e->keys->down = TRUE;
-	// if (keycode == KEY_SHIFT)
-	// if (keycode == KEY_MORE)
-	// if (keycode == KEY_LESS)
 	printf("Key (pressed) code: [%d]\n", keycode);
 	return (0);
 }
@@ -61,13 +54,13 @@ int		key_press(int keycode, t_env *e)
 void	manage_keys(t_env *e)
 {
 	if (e->keys->up == TRUE)
-		e->c->a += RANGE_C;
+		e->origin->bi += RANGE_ORIGIN * e->zoom;
 	if (e->keys->down == TRUE)
-		e->c->a -= RANGE_C;
+		e->origin->bi -= RANGE_ORIGIN * e->zoom;
 	if (e->keys->right == TRUE)
-		e->c->bi += RANGE_C;
+		e->origin->a += RANGE_ORIGIN * e->zoom;
 	if (e->keys->left == TRUE)
-		e->c->bi -= RANGE_C;
+		e->origin->a -= RANGE_ORIGIN * e->zoom;
 }
 
 t_keys	*init_keys(void)

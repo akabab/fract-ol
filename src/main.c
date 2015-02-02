@@ -41,23 +41,31 @@ t_env		*init_env(void)
 	return (e);
 }
 
-t_fract		g_fract;
-
-int			main()
+int			main(int ac, char *av[])
 {
 	t_env		*e;
 
-	e = init_env();
-
-	g_fract.histogram = (int *)malloc(sizeof(int) * N_ITER);
-
-	mlx_expose_hook(e->win, &expose_hook, e);
-	mlx_key_hook(e->win, &key_hook, e);
-	mlx_mouse_hook(e->win, &mouse_hook, e);
-	mlx_hook(e->win, KeyPress, KeyPressMask, &key_press, e);
-	mlx_hook(e->win, KeyRelease, KeyReleaseMask, &key_release, e);
-	mlx_hook(e->win, MotionNotify, PointerMotionMask, &pointer_motion_hook, e);
-	mlx_loop_hook(e->mlx, &loop_hook, e);
-	mlx_loop(e->mlx);
+	if (ac == 2) {
+		e = init_env();
+		if (ft_strequ(av[1], "julia"))
+			e->fract = &fractal_julia;
+		else if (ft_strequ(av[1], "mandel"))
+			e->fract = &fractal_mandelbrot;
+		else
+		{
+			ft_putendl("<fract> {julia, mandel, ...}");
+			exit(-1);
+		}
+		mlx_expose_hook(e->win, &expose_hook, e);
+		mlx_key_hook(e->win, &key_hook, e);
+		mlx_mouse_hook(e->win, &mouse_hook, e);
+		mlx_hook(e->win, KeyPress, KeyPressMask, &key_press, e);
+		mlx_hook(e->win, KeyRelease, KeyReleaseMask, &key_release, e);
+		mlx_hook(e->win, MotionNotify, PointerMotionMask, &pointer_motion_hook, e);
+		mlx_loop_hook(e->mlx, &loop_hook, e);
+		mlx_loop(e->mlx);
+	}
+	else
+		ft_putendl("Usage: %s <fract> {julia, mandel, ...}");
 	return (0);
 }

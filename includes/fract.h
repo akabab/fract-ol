@@ -10,24 +10,34 @@
 # include </usr/X11R6/include/X11/X.h>
 # include <X11/Xutil.h>
 
-# define W_WIDTH	800
-# define W_HEIGHT	800
+# define W_WIDTH			800
+# define W_HEIGHT			800
 
-# define KEY_UP		65362
-# define KEY_DOWN	65364
-# define KEY_LEFT	65361
-# define KEY_RIGHT	65363
-# define KEY_ESC	65307
-# define KEY_SHIFT	65505
-# define KEY_MORE	65451
-# define KEY_LESS	65453
-# define KEY_SPACE	32
-# define KEY_W		119
-# define KEY_A		97
-# define KEY_S		115
-# define KEY_D		100
+# define KEY_UP				65362
+# define KEY_DOWN			65364
+# define KEY_LEFT			65361
+# define KEY_RIGHT			65363
+# define KEY_ESC			65307
+# define KEY_SHIFT			65505
+# define KEY_MORE			65451
+# define KEY_LESS			65453
+# define KEY_SPACE			32
+# define KEY_W				119
+# define KEY_A				97
+# define KEY_S				115
+# define KEY_D				100
+# define KEY_RESET			114
 
-# define N_ITER		256
+# define SCROLL_UP			4
+# define SCROLL_DOWN		5
+
+# define ZOOM_IN_FACTOR		0.9
+# define ZOOM_OUT_FACTOR	1.1
+
+# define RANGE_C			0.02
+# define RANGE_ORIGIN		0.05
+
+# define MAX_ITER			100
 
 typedef struct		s_img
 {
@@ -66,15 +76,11 @@ typedef struct		s_env
 	void			*win;
 	t_img			*img;
 	t_keys			*keys;
+	int				(*fract)(int, int, struct s_env *);
 	t_Z				*c;
 	t_Z				*origin;
 	double			zoom;
 }					t_env;
-
-typedef struct		s_fract
-{
-	int				*histogram;
-}					t_fract;
 
 /*
 **		criss_cross.c
@@ -104,8 +110,6 @@ int			expose_hook(t_env *e);
 int			key_hook(int keycode, t_env *e);
 int			mouse_hook(int button, int x, int y, t_env *e);
 int			loop_hook(t_env *e);
-
-void		displayHistogram();
 
 /*
 **		complexe.c
