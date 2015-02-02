@@ -13,7 +13,7 @@ CC			= gcc $(FLAGS) $(XFLAGS)
 FLAGS		= #-Wall -Werror -Wextra
 XFLAGS		= -g -O2
 
-NAME		= exec
+NAME		= fractol
 
 SRC			= main.c						\
 			  criss_cross.c					\
