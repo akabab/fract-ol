@@ -1,63 +1,62 @@
 #include "fract.h"
 
-typedef struct	s_color
+int			hue_to_color(int hue)
 {
-	float	r;
-	float	g;
-	float	b;
-}				t_color;
+	int		color;
+	int		i;
 
-int		rgbToHex(float r, float g, float b)
+	hue = hue % 360;
+	i = 0;
+	color = 0xff0000;
+	while (i != hue)
+	{
+		if (i < 60)
+			color += 0x000400;
+		else if (i < 120)
+			color -= 0x040000;
+		else if (i < 180)
+			color += 0x000004;
+		else if (i < 240)
+			color -= 0x000400;
+		else if (i < 300)
+			color += 0x040000;
+		else
+			color -= 0x000004;
+		i++;
+	}
+	return (color);
+}
+
+int			fractal_newton(int x, int y, t_env *e)
 {
-	int		hexColor;
+	int		color;
 
-	r = r > 1.0 ? 1.0 : r;
-	r = r < 0.0 ? 0.0 : r;
-	g = g > 1.0 ? 1.0 : g;
-	g = g < 0.0 ? 0.0 : g;
-	b = b > 1.0 ? 1.0 : b;
-	b = b < 0.0 ? 0.0 : b;
-	hexColor = 0x000000;
-
-	hexColor += (int)(r * 0xFF) << 16;
-	hexColor += (int)(g * 0xFF) << 8;
-	hexColor += (int)(b * 0xFF);
-	return (hexColor);
+	color = 0xff0000;
+	return (color);
 }
 
 int			fractal_julia(int x, int y, t_env *e)
 {
-	int		color;
 	int		i;
 	double	a;
 	double	bi;
 	double	cp;
 
-	t_color	col;
-	col.r = 1.0;
-	col.g = 1.0;
-	col.b = 1.0;
-	color = rgbToHex(col.r, col.g, col.b);
-
 	a = Z_a(x, e);
 	bi = Z_bi(y, e);
 	i = 0;
-	while ((a * a + bi * bi) <= 4 && i < 256)
+	while ((a * a + bi * bi) <= 4 && i < 180)
 	{
 		cp = a;
 		a = a * a - bi * bi + e->c->a;
 		bi = 2 * cp * bi + e->c->bi;
 		i++;
 	}
-	col.r = (float)(i % 30) / 30;
-	// col.b = (float)(i % 30) / 30;
-	color = rgbToHex(1.0 - col.r, 0.0, 0.5);
-	return (color);
+	return (hue_to_color(i * 2));
 }
 
 int			fractal_mandelbrot(int x, int y, t_env *e)
 {
-	int		color;
 	int		i;
 	double	a;
 	double	bi;
@@ -70,16 +69,14 @@ int			fractal_mandelbrot(int x, int y, t_env *e)
 	const_a = a;
 	const_bi = bi;
 	i = 0;
-	color = 0x000000;
-	while ((a * a + bi * bi) <= 4 && i < 256)
+	while ((a * a + bi * bi) <= 4 && i < 180)
 	{
-		color += 0x000005;
 		cp = a;
 		a = a * a - bi * bi + const_a;
 		bi = 2 * cp * bi + const_bi;
 		i++;
 	}
-	return (color);
+	return (hue_to_color(i * 2));
 }
 
 void		criss_cross(t_env *e, int (*f_fract)(int, int, t_env *))

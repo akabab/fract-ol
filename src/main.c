@@ -51,9 +51,11 @@ int			main(int ac, char *av[])
 			e->fract = &fractal_julia;
 		else if (ft_strequ(av[1], "mandel"))
 			e->fract = &fractal_mandelbrot;
+		else if (ft_strequ(av[1], "newton"))
+			e->fract = &fractal_newton;
 		else
 		{
-			ft_putendl("Usage: ./fractol <fract> {julia, mandel, ...}");
+			ft_putendl("Usage: ./fractol <fract> {julia, mandel, newton, ...}");
 			exit(-1);
 		}
 		mlx_expose_hook(e->win, &expose_hook, e);
@@ -66,6 +68,6 @@ int			main(int ac, char *av[])
 		mlx_loop(e->mlx);
 	}
 	else
-		ft_putendl("Usage: ./fractol <fract> {julia, mandel, ...}");
+		ft_putendl("Usage: ./fractol <fract> {julia, mandel, newton, ...}");
 	return (0);
 }
