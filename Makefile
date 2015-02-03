@@ -3,7 +3,7 @@ FLAGS			=	-g -Wall -Wextra -Werror
 NAME			=	fractol
 LIB				=	libft/libft.a
 LIB_PATH		=	libft/
-INCLUDES		=	-I $(LIB_PATH)./includes -I ./includes
+INCLUDES		=	-I $(LIB_PATH)./includes -I ./includes -I /usr/X11/include
 DIR_LIBS		=	/usr/X11/lib
 LDFLAGS			=	-L$(DIR_LIBS) -lXext -lX11 -lmlx
 SRCS			=	src/main.c						\
@@ -15,7 +15,7 @@ SRCS			=	src/main.c						\
 					src/keys.c						\
 					src/complex.c					\
 					src/tools.c
-OBJS			=	$(SRCS:src/.c=obj/.o)
+OBJS			=	$(SRCS:src/%.c=obj/%.o)
 
 # COLORS
 C_NO			=	"\033[00m"
@@ -41,8 +41,8 @@ $(LIB):
 obj:
 	@mkdir -p obj
 
-obj/%.o: src/%.c $(INCLUDES)/fract.h
-	@$(CC) $(FLAGS) -c -o $@ $^ $(INCLUDES)
+obj/%.o: src/%.c ./includes/fract.h
+	@$(CC) $(FLAGS) -c -o $@ $< $(INCLUDES)
 	@echo "Linking" [ $< ] $(OK)
 
 clean:

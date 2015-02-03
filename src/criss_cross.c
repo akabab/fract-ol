@@ -31,6 +31,9 @@ int			fractal_newton(int x, int y, t_env *e)
 {
 	int		color;
 
+	(void)x;
+	(void)y;
+	(void)e;
 	color = 0x000000;
 	return (color);
 }

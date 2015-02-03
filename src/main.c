@@ -35,7 +35,7 @@ int				main(int ac, char *av[])
 		ft_putendl("Usage: ./fractol <fract> ... {julia, mandel, newton, ...}");
 	while (i < ac)
 	{
-		if (ft_fract = match_fractal(av[i]))
+		if ((ft_fract = match_fractal(av[i])))
 		{
 			if (!(pid = fork()))
 			{
