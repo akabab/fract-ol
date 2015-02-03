@@ -49,12 +49,17 @@ void		*match_fractal(char *av)
 		return (&fractal_mandelbrot);
 	else if (ft_strequ(av, "newton"))
 		return (&fractal_newton);
+	else
+	{
+		ft_putstr(av);
+		ft_putendl(" is invalid. Valids <fract> {julia, mandel, newton, ...}");
+	}
 	return (NULL);
 }
 
 void		waitChild(int *pid)
 {
-	int	status;
+	int		status;
 
 	*pid = wait(&status);
 }
@@ -73,10 +78,10 @@ void		mlx_handler(t_env *e)
 
 int			main(int ac, char *av[])
 {
-	int				i;
-	t_env			*e;
-	void			*ft_fract;
-	int				pid;
+	int			i;
+	t_env		*e;
+	void		*ft_fract;
+	int			pid;
 
 	i = 1;
 	if (ac < 2)
