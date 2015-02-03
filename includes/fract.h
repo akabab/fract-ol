@@ -82,6 +82,7 @@ typedef struct		s_env
 	void			*mlx;
 	void			*win;
 	t_img			*img;
+	char			*title;
 	t_keys			*keys;
 	int				(*fract)(int, int, struct s_env *);
 	t_z				*c;
@@ -101,6 +102,7 @@ int			fractal_newton(int x, int y, t_env *e);
 **		env.c
 */
 void		free_env(t_env *e);
+void		init_params(t_env *e);
 t_env		*init_env(char *title);
 
 /*

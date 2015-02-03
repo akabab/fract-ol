@@ -23,9 +23,9 @@ static t_img	*create_new_image(t_env *e, int width, int height)
 	return (img);
 }
 
-static void		init_params(char *title, t_env *e)
+void			init_params(t_env *e)
 {
-	if (ft_strequ(title, "mandel"))
+	if (ft_strequ(e->title, "mandel"))
 	{
 		e->c->a = MANDEL_C_A;
 		e->c->bi = MANDEL_C_BI;
@@ -61,6 +61,7 @@ t_env			*init_env(char *title)
 		exit(-1);
 	if (!(e->origin = malloc(sizeof(t_z))))
 		exit(-1);
-	init_params(title, e);
+	e->title = title;
+	init_params(e);
 	return (e);
 }

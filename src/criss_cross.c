@@ -95,5 +95,3 @@ void		criss_cross(t_env *e, int (*f_fract)(int, int, t_env *))
 		x++;
 	}
 }
-
-

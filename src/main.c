@@ -16,7 +16,7 @@ static void		*match_fractal(char *av)
 	return (NULL);
 }
 
-static void		waitChild(int *pid)
+static void		wait_child(int *pid)
 {
 	int		status;
 
@@ -47,6 +47,6 @@ int				main(int ac, char *av[])
 		i++;
 	}
 	while (i-- > 1)
-		waitChild(&pid);
+		wait_child(&pid);
 	return (0);
 }

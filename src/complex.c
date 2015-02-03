@@ -1,7 +1,6 @@
-
 #include "fract.h"
 
-t_z		*coord_to_z(int x, int y, t_env *e)
+t_z			*coord_to_z(int x, int y, t_env *e)
 {
 	t_z		*z;
 	double	size;

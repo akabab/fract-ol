@@ -20,13 +20,7 @@ int		key_release(int keycode, t_env *e)
 	if (keycode == KEY_LESS)
 		e->zoom *= ZOOM_OUT_FACTOR;
 	if (keycode == KEY_RESET)
-	{
-		e->c->a = 0.0;
-		e->c->bi = 0.0;
-		e->origin->a = 0.0;
-		e->origin->bi = 0.0;
-		e->zoom = 1.0;
-	}
+		init_params(e);
 	if (keycode == KEY_SPACE)
 	{
 		printf("\n******************\n");
