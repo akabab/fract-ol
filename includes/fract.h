@@ -92,6 +92,12 @@ int			fractal_mandelbrot(int x, int y, t_env *e);
 int			fractal_newton(int x, int y, t_env *e);
 
 /*
+**		env.c
+*/
+void		free_env(t_env *e);
+t_env		*init_env(char *title);
+
+/*
 **		keys.c
 */
 int			key_press(int keycode, t_env *e);

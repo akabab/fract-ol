@@ -16,6 +16,7 @@ XFLAGS		= -g -O2
 NAME		= fractol
 
 SRC			= main.c						\
+			  env.c							\
 			  criss_cross.c					\
 			  draw.c						\
 			  hook.c						\

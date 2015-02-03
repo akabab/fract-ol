@@ -12,9 +12,7 @@ int		key_release(int keycode, t_env *e)
 		e->keys->down = FALSE;
 	if (keycode == KEY_ESC)
 	{
-		free(e->c);
-		free(e->origin);
-		free(e);
+		free_env(e);
 		exit(0);
 	}
 	if (keycode == KEY_MORE)
