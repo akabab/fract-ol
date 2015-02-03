@@ -1,63 +1,61 @@
-CPATH		= src
-OPATH		= obj
-HPATH		= includes
-LIBPATH		= ./libft
-HLIB		= $(LIBPATH)/includes
-LIB			= $(LIBPATH) -lft
-LIBA		= $(LIBPATH)/libft.a
-
-MLXPATH		= /usr/X11/lib
-MLX			= $(MLXPATH) -lXext -lX11 -lmlx
-
-CC			= gcc $(FLAGS) $(XFLAGS)
-FLAGS		= #-Wall -Werror -Wextra
-XFLAGS		= -g -O2
-
-NAME		= fractol
-
-SRC			= main.c						\
-			  env.c							\
-			  criss_cross.c					\
-			  draw.c						\
-			  hook.c						\
-			  mlx_handler.c					\
-			  keys.c						\
-			  complex.c						\
-			  tools.c
-
-CFILE		= $(patsubst %,$(CPATH)/%, $(SRC))
-OFILE		= $(patsubst %.c,$(OPATH)/%.o, $(SRC))
+CC				=	gcc
+FLAGS			=	-g -Wall -Wextra -Werror
+NAME			=	fractol
+LIB				=	libft/libft.a
+LIB_PATH		=	libft/
+INCLUDES		=	-I $(LIB_PATH)./includes -I ./includes
+DIR_LIBS		=	/usr/X11/lib
+LDFLAGS			=	-L$(DIR_LIBS) -lXext -lX11 -lmlx
+SRCS			=	src/main.c						\
+					src/env.c						\
+					src/criss_cross.c				\
+					src/draw.c						\
+					src/hook.c						\
+					src/mlx_handler.c				\
+					src/keys.c						\
+					src/complex.c					\
+					src/tools.c
+OBJS			=	$(SRCS:src/.c=obj/.o)
 
 # COLORS
-C_NO	= "\033[00m"
-C_GOOD	= "\033[32m"
+C_NO			=	"\033[00m"
+C_OK			=	"\033[35m"
+C_GOOD			=	"\033[32m"
+C_ERROR			=	"\033[31m"
+C_WARN			=	"\033[33m"
 
-all: $(NAME)
+# DBG MESSAGE
+SUCCESS			=	$(C_GOOD)SUCCESS$(C_NO)
+OK				=	$(C_OK)OK$(C_NO)
 
-$(NAME): $(OPATH) $(OFILE) $(LIBA)
-	@$(CC) -I $(HLIB) -I $(HPATH) -L $(LIB) -L $(MLX) $ $(OFILE) -o $(NAME)
-	@echo $(C_GOOD)Creation Executable$(C_NO)
 
-$(LIBA):
-	@make -C $(LIBPATH)
-	@make -C $(LIBPATH) clean
+all: obj $(NAME)
 
-$(OPATH):
-	@echo "Creation of building directory"
-	@mkdir $(OPATH)
+$(NAME): $(LIB) $(OBJS)
+	@$(CC) $(FLAGS) -o $@ $^ $(LDFLAGS) -L $(LIB_PATH) -lft
+	@echo "Compiling" [ $(NAME) ] $(SUCCESS)
 
-$(OPATH)/%.o: $(CPATH)/%.c
-	@echo "Creating file $@"
-	@$(CC) -o $@ -c $^ -I $(HPATH) -I $(HLIB) -I /usr/X11/include
+$(LIB):
+	@make -C $(LIB_PATH)
+
+obj:
+	@mkdir -p obj
+
+obj/%.o: src/%.c $(INCLUDES)/fract.h
+	@$(CC) $(FLAGS) -c -o $@ $^ $(INCLUDES)
+	@echo "Linking" [ $< ] $(OK)
 
 clean:
-	@echo "Deletion of building directory"
-	@rm -rf $(OPATH)
+	@rm -f $(OBJS)
+	@rm -rf obj
+	@echo "Cleaning" [ $(NAME) ] "..." $(OK)
 
 fclean: clean
-	@echo "Deletion of $(NAME)"
 	@rm -f $(NAME)
+	@make -C $(LIB_PATH) fclean
+	@echo "Delete" [ $(NAME) ] $(OK)
 
 re: fclean all
 
-.PHONY: all clean fclean re
+.PHONY: clean all re fclean
+
