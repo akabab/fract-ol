@@ -23,6 +23,23 @@ static t_img	*create_new_image(t_env *e, int width, int height)
 	return (img);
 }
 
+static void		init_params(char *title, t_env *e)
+{
+	e->c->a = 0.0;
+	e->c->bi = 0.0;
+	e->origin->a = 0;
+	e->origin->bi = 0;
+	e->zoom = 1.0;
+	if (ft_strequ(title, "mandel"))
+	{
+		e->c->a = MANDEL_C_A;
+		e->c->bi = MANDEL_C_BI;
+		e->origin->a = MANDEL_ORIGIN_A;
+		e->origin->bi = MANDEL_ORIGIN_BI;
+		e->zoom = MANDEL_ZOOM;
+	}
+}
+
 t_env			*init_env(char *title)
 {
 	t_env	*e;
@@ -41,10 +58,6 @@ t_env			*init_env(char *title)
 		exit(-1);
 	if (!(e->origin = malloc(sizeof(t_z))))
 		exit(-1);
-	e->c->a = 0.0;
-	e->c->bi = 0.0;
-	e->origin->a = 0;
-	e->origin->bi = 0;
-	e->zoom = 1.0;
+	init_params(title, e);
 	return (e);
 }

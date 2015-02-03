@@ -44,7 +44,7 @@ int			fractal_julia(int x, int y, t_env *e)
 	z.a = z_xtoa(x, e);
 	z.bi = z_ytobi(y, e);
 	i = 0;
-	while ((z.a * z.a + z.bi * z.bi) <= 4 && i < 180)
+	while ((z.a * z.a + z.bi * z.bi) <= 4 && i < MAX_ITER)
 	{
 		cp = z.a;
 		z.a = z.a * z.a - z.bi * z.bi + e->c->a;
@@ -66,7 +66,7 @@ int			fractal_mandelbrot(int x, int y, t_env *e)
 	const_z.a = z.a;
 	const_z.bi = z.bi;
 	i = 0;
-	while ((z.a * z.a + z.bi * z.bi) <= 4 && i < 180)
+	while ((z.a * z.a + z.bi * z.bi) <= 4 && i < MAX_ITER)
 	{
 		cp = z.a;
 		z.a = z.a * z.a - z.bi * z.bi + const_z.a;

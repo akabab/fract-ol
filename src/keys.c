@@ -27,14 +27,14 @@ int		key_release(int keycode, t_env *e)
 		e->origin->bi = 0.0;
 		e->zoom = 1.0;
 	}
-	// if (keycode == KEY_SPACE)
-	// {
-	// 	printf("\n******************\n");
-	// 	printf("c = %f, %fi\n", e->c->a, e->c->bi);
-	// 	printf("zoom = %f\n", e->zoom);
-	// 	printf("origine = %f, %f\n", e->origin->a, e->origin->bi);
-	// 	printf("******************\n");
-	// }
+	if (keycode == KEY_SPACE)
+	{
+		printf("\n******************\n");
+		printf("c = %f, %fi\n", e->c->a, e->c->bi);
+		printf("zoom = %f\n", e->zoom);
+		printf("origine = %f, %f\n", e->origin->a, e->origin->bi);
+		printf("******************\n");
+	}
 	// printf("Key (released) code: [%d]\n", keycode);
 	return (0);
 }

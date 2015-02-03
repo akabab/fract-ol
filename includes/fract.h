@@ -38,7 +38,13 @@
 # define RANGE_C			0.02
 # define RANGE_ORIGIN		0.05
 
-# define MAX_ITER			100
+# define MAX_ITER			180
+
+# define MANDEL_C_A			-0.62
+# define MANDEL_C_BI		-1.18
+# define MANDEL_ORIGIN_A	-0.62
+# define MANDEL_ORIGIN_BI	-0.037
+# define MANDEL_ZOOM		0.7
 
 typedef struct		s_img
 {
