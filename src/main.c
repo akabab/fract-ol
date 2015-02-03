@@ -1,6 +1,6 @@
 #include "fract.h"
 
-t_img		*create_new_image(t_env *e, int width, int height)
+static t_img	*create_new_image(t_env *e, int width, int height)
 {
 	t_img	*img;
 
@@ -15,7 +15,7 @@ t_img		*create_new_image(t_env *e, int width, int height)
 	return (img);
 }
 
-t_env		*init_env(char *title)
+static t_env	*init_env(char *title)
 {
 	t_env	*e;
 
@@ -41,7 +41,7 @@ t_env		*init_env(char *title)
 	return (e);
 }
 
-void		*match_fractal(char *av)
+static void		*match_fractal(char *av)
 {
 	if (ft_strequ(av, "julia"))
 		return (&fractal_julia);
@@ -57,26 +57,14 @@ void		*match_fractal(char *av)
 	return (NULL);
 }
 
-void		waitChild(int *pid)
+static void		waitChild(int *pid)
 {
 	int		status;
 
 	*pid = wait(&status);
 }
 
-void		mlx_handler(t_env *e)
-{
-	mlx_expose_hook(e->win, &expose_hook, e);
-	mlx_key_hook(e->win, &key_hook, e);
-	mlx_mouse_hook(e->win, &mouse_hook, e);
-	mlx_hook(e->win, KeyPress, KeyPressMask, &key_press, e);
-	mlx_hook(e->win, KeyRelease, KeyReleaseMask, &key_release, e);
-	mlx_hook(e->win, MotionNotify, PointerMotionMask, &pointer_motion_hook, e);
-	mlx_loop_hook(e->mlx, &loop_hook, e);
-	mlx_loop(e->mlx);
-}
-
-int			main(int ac, char *av[])
+int				main(int ac, char *av[])
 {
 	int			i;
 	t_env		*e;

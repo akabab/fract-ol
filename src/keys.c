@@ -11,7 +11,10 @@ int		key_release(int keycode, t_env *e)
 	if (keycode == KEY_DOWN)
 		e->keys->down = FALSE;
 	if (keycode == KEY_ESC)
+	{
+		free(e);
 		exit(0);
+	}
 	if (keycode == KEY_MORE)
 		e->zoom *= ZOOM_IN_FACTOR;
 	if (keycode == KEY_LESS)
@@ -24,16 +27,15 @@ int		key_release(int keycode, t_env *e)
 		e->origin->bi = 0.0;
 		e->zoom = 1.0;
 	}
-
-	if (keycode == KEY_SPACE)
-	{
-		printf("\n******************\n");
-		printf("c = %f, %fi\n", e->c->a, e->c->bi);
-		printf("zoom = %f\n", e->zoom);
-		printf("origine = %f, %f\n", e->origin->a, e->origin->bi);
-		printf("******************\n");
-	}
-	printf("Key (released) code: [%d]\n", keycode);
+	// if (keycode == KEY_SPACE)
+	// {
+	// 	printf("\n******************\n");
+	// 	printf("c = %f, %fi\n", e->c->a, e->c->bi);
+	// 	printf("zoom = %f\n", e->zoom);
+	// 	printf("origine = %f, %f\n", e->origin->a, e->origin->bi);
+	// 	printf("******************\n");
+	// }
+	// printf("Key (released) code: [%d]\n", keycode);
 	return (0);
 }
 
@@ -47,7 +49,7 @@ int		key_press(int keycode, t_env *e)
 		e->keys->up = TRUE;
 	if (keycode == KEY_DOWN)
 		e->keys->down = TRUE;
-	printf("Key (pressed) code: [%d]\n", keycode);
+	// printf("Key (pressed) code: [%d]\n", keycode);
 	return (0);
 }
 

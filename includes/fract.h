@@ -111,14 +111,19 @@ int			pointer_motion_hook(int x, int y, t_env *e);
 int			expose_hook(t_env *e);
 int			key_hook(int keycode, t_env *e);
 int			mouse_hook(int button, int x, int y, t_env *e);
+
+/*
+**		mlx_handler.c
+*/
 int			loop_hook(t_env *e);
+void		mlx_handler(t_env *e);
 
 /*
 **		complexe.c
 */
-t_Z		*coord_to_z(int x, int y, t_env *e);
-double	Z_a(int x, t_env *e);
-double	Z_bi(int y, t_env *e);
+t_Z			*coord_to_z(int x, int y, t_env *e);
+double		Z_a(int x, t_env *e);
+double		Z_bi(int y, t_env *e);
 
 /*
 **		tools.c

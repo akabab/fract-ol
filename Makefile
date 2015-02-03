@@ -19,6 +19,7 @@ SRC			= main.c						\
 			  criss_cross.c					\
 			  draw.c						\
 			  hook.c						\
+			  mlx_handler.c					\
 			  keys.c						\
 			  complexe.c					\
 			  tools.c
