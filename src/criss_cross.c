@@ -7,7 +7,7 @@ int			hue_to_color(int hue)
 
 	hue %= 360;
 	i = 0;
-	color = 0x000000;
+	color = 0x000000; //0xFF0000;
 	while (i != hue)
 	{
 		if (i < 60)

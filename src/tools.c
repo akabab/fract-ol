@@ -1,4 +1,3 @@
-
 #include "fract.h"
 
 double		ft_abs_double(double n)
