@@ -84,10 +84,14 @@ typedef struct		s_env
 	t_img			*img;
 	char			*title;
 	t_keys			*keys;
+	int				*palette;
 	int				(*fract)(int, int, struct s_env *);
 	t_z				*c;
 	t_z				*origin;
 	double			zoom;
+	int				step;
+	int				start;
+	int				range;
 }					t_env;
 
 /*
@@ -143,5 +147,14 @@ double		z_ytobi(int y, t_env *e);
 **		tools.c
 */
 double		ft_abs_double(double n);
+
+/*
+**		color.c
+*/
+# define PALETTE_SIZE	360
+
+int		*generate_palette(int size);
+void	draw_palette(int *palette, int size, t_env *e);
+
 
 #endif

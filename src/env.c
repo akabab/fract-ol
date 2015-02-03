@@ -41,6 +41,9 @@ void			init_params(t_env *e)
 		e->origin->bi = 0;
 		e->zoom = 1.0;
 	}
+	e->step = 5;
+	e->start = 0;
+	e->range = PALETTE_SIZE - 1;
 }
 
 t_env			*init_env(char *title)
@@ -60,6 +63,8 @@ t_env			*init_env(char *title)
 	if (!(e->c = malloc(sizeof(t_z))))
 		exit(-1);
 	if (!(e->origin = malloc(sizeof(t_z))))
+		exit(-1);
+	if (!(e->palette = generate_palette(PALETTE_SIZE)))
 		exit(-1);
 	e->title = title;
 	init_params(e);

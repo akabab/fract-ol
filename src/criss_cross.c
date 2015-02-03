@@ -54,7 +54,10 @@ int			fractal_julia(int x, int y, t_env *e)
 		z.bi = 2 * cp * z.bi + e->c->bi;
 		i++;
 	}
-	return (hue_to_color(i * 2));
+	if (i == 0)
+		return (0x000000);
+	return (e->palette[e->start + ((i * e->step) % e->range)]);
+	// return (hue_to_color(i * 2));
 }
 
 int			fractal_mandelbrot(int x, int y, t_env *e)

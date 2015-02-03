@@ -29,6 +29,19 @@ int		key_release(int keycode, t_env *e)
 		printf("origine = %f, %f\n", e->origin->a, e->origin->bi);
 		printf("******************\n");
 	}
+
+	if (keycode == 45)
+		e->start--;
+	if (keycode == 61)
+		e->start++;
+	if (keycode == 91)
+		e->range--;
+	if (keycode == 93)
+		e->range++;
+	if (keycode == 57)
+		e->step--;
+	if (keycode == 48)
+		e->step++;
 	// printf("Key (released) code: [%d]\n", keycode);
 	return (0);
 }
@@ -43,7 +56,7 @@ int		key_press(int keycode, t_env *e)
 		e->keys->up = TRUE;
 	if (keycode == KEY_DOWN)
 		e->keys->down = TRUE;
-	// printf("Key (pressed) code: [%d]\n", keycode);
+	printf("Key (pressed) code: [%d]\n", keycode);
 	return (0);
 }
 
