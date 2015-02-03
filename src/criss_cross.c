@@ -5,9 +5,9 @@ int			hue_to_color(int hue)
 	int		color;
 	int		i;
 
-	hue = hue % 360;
+	hue %= 360;
 	i = 0;
-	color = 0xff0000;
+	color = 0x000000;
 	while (i != hue)
 	{
 		if (i < 60)
@@ -31,7 +31,7 @@ int			fractal_newton(int x, int y, t_env *e)
 {
 	int		color;
 
-	color = 0xff0000;
+	color = 0x000000;
 	return (color);
 }
 
