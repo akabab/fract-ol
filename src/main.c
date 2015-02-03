@@ -15,7 +15,7 @@ t_img		*create_new_image(t_env *e, int width, int height)
 	return (img);
 }
 
-t_env		*init_env(void)
+t_env		*init_env(char *title)
 {
 	t_env	*e;
 
@@ -23,7 +23,7 @@ t_env		*init_env(void)
 		exit(-1);
 	if (!(e->mlx = mlx_init()))
 		exit(-1);
-	if (!(e->win = mlx_new_window(e->mlx, W_WIDTH, W_HEIGHT, "Fract-ol")))
+	if (!(e->win = mlx_new_window(e->mlx, W_WIDTH, W_HEIGHT, title)))
 		exit(-1);
 	if (!(e->img = create_new_image(e, W_WIDTH, W_HEIGHT)))
 		exit(-1);
@@ -41,7 +41,45 @@ t_env		*init_env(void)
 	return (e);
 }
 
+void		*match_fractal(char *av)
+{
+	if (ft_strequ(av, "julia"))
+		return (&fractal_julia);
+	else if (ft_strequ(av, "mandel"))
+		return (&fractal_mandelbrot);
+	else if (ft_strequ(av, "newton"))
+		return (&fractal_newton);
+	return (NULL);
+}
+
 int			main(int ac, char *av[])
+{
+	int				i;
+	void			*mlx;
+	t_env			*e;
+	t_list_node		*env_list;
+
+	i = 1;
+	mlx = NULL;
+	env_list = NULL;
+	while (i < ac)
+	{
+		//chk av[i] == "fract"
+		if (match_fractal(av[i]))
+		{
+			//init new env (mlx, win, img, keys, ...)
+			e = init_env(av[i]);
+			//push to env_list
+			list_push_back(&env_list, e);
+		}
+		i++;
+	}
+	if (!env_list)
+		ft_putendl("Usage: ./fractol <fract> ... {julia, mandel, newton, ...}");
+	return (0);
+}
+
+/*int			main(int ac, char *av[])
 {
 	t_env		*e;
 
@@ -70,4 +108,4 @@ int			main(int ac, char *av[])
 	else
 		ft_putendl("Usage: ./fractol <fract> {julia, mandel, newton, ...}");
 	return (0);
-}
+}*/
