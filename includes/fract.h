@@ -59,11 +59,11 @@ typedef struct		s_keys
 	t_bool			left;
 }					t_keys;
 
-typedef struct		s_Z
+typedef struct		s_z
 {
 	double			a;
 	double			bi;
-}					t_Z;
+}					t_z;
 
 typedef struct		s_coord
 {
@@ -78,8 +78,8 @@ typedef struct		s_env
 	t_img			*img;
 	t_keys			*keys;
 	int				(*fract)(int, int, struct s_env *);
-	t_Z				*c;
-	t_Z				*origin;
+	t_z				*c;
+	t_z				*origin;
 	double			zoom;
 }					t_env;
 
@@ -127,9 +127,9 @@ void		mlx_handler(t_env *e);
 /*
 **		complexe.c
 */
-t_Z			*coord_to_z(int x, int y, t_env *e);
-double		Z_a(int x, t_env *e);
-double		Z_bi(int y, t_env *e);
+t_z			*coord_to_z(int x, int y, t_env *e);
+double		z_xtoa(int x, t_env *e);
+double		z_ytobi(int y, t_env *e);
 
 /*
 **		tools.c

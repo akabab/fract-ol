@@ -38,18 +38,17 @@ int			fractal_newton(int x, int y, t_env *e)
 int			fractal_julia(int x, int y, t_env *e)
 {
 	int		i;
-	double	a;
-	double	bi;
+	t_z		z;
 	double	cp;
 
-	a = Z_a(x, e);
-	bi = Z_bi(y, e);
+	z.a = z_xtoa(x, e);
+	z.bi = z_ytobi(y, e);
 	i = 0;
-	while ((a * a + bi * bi) <= 4 && i < 180)
+	while ((z.a * z.a + z.bi * z.bi) <= 4 && i < 180)
 	{
-		cp = a;
-		a = a * a - bi * bi + e->c->a;
-		bi = 2 * cp * bi + e->c->bi;
+		cp = z.a;
+		z.a = z.a * z.a - z.bi * z.bi + e->c->a;
+		z.bi = 2 * cp * z.bi + e->c->bi;
 		i++;
 	}
 	return (hue_to_color(i * 2));
@@ -58,22 +57,20 @@ int			fractal_julia(int x, int y, t_env *e)
 int			fractal_mandelbrot(int x, int y, t_env *e)
 {
 	int		i;
-	double	a;
-	double	bi;
 	double	cp;
-	double	const_a;
-	double	const_bi;
+	t_z		z;
+	t_z		const_z;
 
-	a = Z_a(x, e);
-	bi = Z_bi(y, e);
-	const_a = a;
-	const_bi = bi;
+	z.a = z_xtoa(x, e);
+	z.bi = z_ytobi(y, e);
+	const_z.a = z.a;
+	const_z.bi = z.bi;
 	i = 0;
-	while ((a * a + bi * bi) <= 4 && i < 180)
+	while ((z.a * z.a + z.bi * z.bi) <= 4 && i < 180)
 	{
-		cp = a;
-		a = a * a - bi * bi + const_a;
-		bi = 2 * cp * bi + const_bi;
+		cp = z.a;
+		z.a = z.a * z.a - z.bi * z.bi + const_z.a;
+		z.bi = 2 * cp * z.bi + const_z.bi;
 		i++;
 	}
 	return (hue_to_color(i * 2));

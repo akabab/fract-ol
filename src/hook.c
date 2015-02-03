@@ -2,8 +2,8 @@
 
 int				pointer_motion_hook(int x, int y, t_env *e)
 {
-	e->c->a = Z_a(x, e);
-	e->c->bi = Z_bi(y, e);
+	e->c->a = z_xtoa(x, e);
+	e->c->bi = z_ytobi(y, e);
 	// printf("Mouse at %d, %d\n", x, y);
 	// printf("c-x = %f, c-y = %f\n", e->c->x, e->c->y);
 	return (0);
@@ -25,18 +25,16 @@ int				key_hook(int keycode, t_env *e)
 
 static void		zoom(int x, int y, float zoom_factor, t_env *e)
 {
-	double		a;
-	double		bi;
-	double		new_a;
-	double		new_bi;
+	t_z		z;
+	t_z		new_z;
 
-	a = Z_a(x, e);
-	bi = Z_bi(y, e);
+	z.a = z_xtoa(x, e);
+	z.bi = z_ytobi(y, e);
 	e->zoom *= zoom_factor;
-	new_a = Z_a(x, e);
-	new_bi = Z_bi(y, e);
-	e->origin->a -= new_a - a;
-	e->origin->bi -= new_bi - bi;
+	new_z.a = z_xtoa(x, e);
+	new_z.bi = z_ytobi(y, e);
+	e->origin->a -= new_z.a - z.a;
+	e->origin->bi -= new_z.bi - z.bi;
 	// printf("point : (%fa, %fbi)\n", a, bi);
 	// printf("origine : (%fx, %fy)\n", e->origin->a, e->origin->bi);
 }

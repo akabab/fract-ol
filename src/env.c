@@ -37,9 +37,9 @@ t_env			*init_env(char *title)
 		exit(-1);
 	if (!(e->keys = init_keys()))
 		exit(-1);
-	if (!(e->c = malloc(sizeof(t_Z))))
+	if (!(e->c = malloc(sizeof(t_z))))
 		exit(-1);
-	if (!(e->origin = malloc(sizeof(t_Z))))
+	if (!(e->origin = malloc(sizeof(t_z))))
 		exit(-1);
 	e->c->a = 0.0;
 	e->c->bi = 0.0;

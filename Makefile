@@ -22,7 +22,7 @@ SRC			= main.c						\
 			  hook.c						\
 			  mlx_handler.c					\
 			  keys.c						\
-			  complexe.c					\
+			  complex.c						\
 			  tools.c
 
 CFILE		= $(patsubst %,$(CPATH)/%, $(SRC))
