@@ -12,6 +12,8 @@ int		key_release(int keycode, t_env *e)
 		e->keys->down = FALSE;
 	if (keycode == KEY_ESC)
 	{
+		free(e->c);
+		free(e->origin);
 		free(e);
 		exit(0);
 	}
