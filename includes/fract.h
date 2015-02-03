@@ -43,7 +43,7 @@
 # define MANDEL_C_A			-0.62
 # define MANDEL_C_BI		-1.18
 # define MANDEL_ORIGIN_A	-0.62
-# define MANDEL_ORIGIN_BI	-0.037
+# define MANDEL_ORIGIN_BI	-0.04
 # define MANDEL_ZOOM		0.7
 
 typedef struct		s_img

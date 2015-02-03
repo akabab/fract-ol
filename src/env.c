@@ -25,11 +25,6 @@ static t_img	*create_new_image(t_env *e, int width, int height)
 
 static void		init_params(char *title, t_env *e)
 {
-	e->c->a = 0.0;
-	e->c->bi = 0.0;
-	e->origin->a = 0;
-	e->origin->bi = 0;
-	e->zoom = 1.0;
 	if (ft_strequ(title, "mandel"))
 	{
 		e->c->a = MANDEL_C_A;
@@ -37,6 +32,14 @@ static void		init_params(char *title, t_env *e)
 		e->origin->a = MANDEL_ORIGIN_A;
 		e->origin->bi = MANDEL_ORIGIN_BI;
 		e->zoom = MANDEL_ZOOM;
+	}
+	else
+	{
+		e->c->a = 0.0;
+		e->c->bi = 0.0;
+		e->origin->a = 0;
+		e->origin->bi = 0;
+		e->zoom = 1.0;
 	}
 }
 
