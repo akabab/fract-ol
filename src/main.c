@@ -52,60 +52,49 @@ void		*match_fractal(char *av)
 	return (NULL);
 }
 
+void		waitChild(int *pid)
+{
+	int	status;
+
+	*pid = wait(&status);
+}
+
+void		mlx_handler(t_env *e)
+{
+	mlx_expose_hook(e->win, &expose_hook, e);
+	mlx_key_hook(e->win, &key_hook, e);
+	mlx_mouse_hook(e->win, &mouse_hook, e);
+	mlx_hook(e->win, KeyPress, KeyPressMask, &key_press, e);
+	mlx_hook(e->win, KeyRelease, KeyReleaseMask, &key_release, e);
+	mlx_hook(e->win, MotionNotify, PointerMotionMask, &pointer_motion_hook, e);
+	mlx_loop_hook(e->mlx, &loop_hook, e);
+	mlx_loop(e->mlx);
+}
+
 int			main(int ac, char *av[])
 {
 	int				i;
-	void			*mlx;
 	t_env			*e;
-	t_list_node		*env_list;
+	void			*ft_fract;
+	int				pid;
 
 	i = 1;
-	mlx = NULL;
-	env_list = NULL;
+	if (ac < 2)
+		ft_putendl("Usage: ./fractol <fract> ... {julia, mandel, newton, ...}");
 	while (i < ac)
 	{
-		//chk av[i] == "fract"
-		if (match_fractal(av[i]))
+		if (ft_fract = match_fractal(av[i]))
 		{
-			//init new env (mlx, win, img, keys, ...)
-			e = init_env(av[i]);
-			//push to env_list
-			list_push_back(&env_list, e);
+			if (!(pid = fork()))
+			{
+				e = init_env(av[i]);
+				e->fract = ft_fract;
+				mlx_handler(e);
+			}
 		}
 		i++;
 	}
-	if (!env_list)
-		ft_putendl("Usage: ./fractol <fract> ... {julia, mandel, newton, ...}");
+	while (i-- > 1)
+		waitChild(&pid);
 	return (0);
 }
-
-/*int			main(int ac, char *av[])
-{
-	t_env		*e;
-
-	if (ac == 2) {
-		e = init_env();
-		if (ft_strequ(av[1], "julia"))
-			e->fract = &fractal_julia;
-		else if (ft_strequ(av[1], "mandel"))
-			e->fract = &fractal_mandelbrot;
-		else if (ft_strequ(av[1], "newton"))
-			e->fract = &fractal_newton;
-		else
-		{
-			ft_putendl("Usage: ./fractol <fract> {julia, mandel, newton, ...}");
-			exit(-1);
-		}
-		mlx_expose_hook(e->win, &expose_hook, e);
-		mlx_key_hook(e->win, &key_hook, e);
-		mlx_mouse_hook(e->win, &mouse_hook, e);
-		mlx_hook(e->win, KeyPress, KeyPressMask, &key_press, e);
-		mlx_hook(e->win, KeyRelease, KeyReleaseMask, &key_release, e);
-		mlx_hook(e->win, MotionNotify, PointerMotionMask, &pointer_motion_hook, e);
-		mlx_loop_hook(e->mlx, &loop_hook, e);
-		mlx_loop(e->mlx);
-	}
-	else
-		ft_putendl("Usage: ./fractol <fract> {julia, mandel, newton, ...}");
-	return (0);
-}*/

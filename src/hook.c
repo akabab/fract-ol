@@ -4,7 +4,7 @@ int		pointer_motion_hook(int x, int y, t_env *e)
 {
 	e->c->a = Z_a(x, e);
 	e->c->bi = Z_bi(y, e);
-	//printf("Mouse at %d, %d\n", x, y);
+	// printf("Mouse at %d, %d\n", x, y);
 	//printf("c-x = %f, c-y = %f\n", e->c->x, e->c->y);
 	return (0);
 }
@@ -47,7 +47,7 @@ int		mouse_hook(int button, int x, int y, t_env *e)
 		zoom(x, y, ZOOM_IN_FACTOR, e);
 	if (button == SCROLL_DOWN)
 		zoom(x, y, ZOOM_OUT_FACTOR, e);
-	printf("Mouse code: [%d] at (%d, %d)\n", button, x, y);
+	// printf("Mouse code: [%d] at (%d, %d)\n", button, x, y);
 	return (0);
 }
 
