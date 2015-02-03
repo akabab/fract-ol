@@ -9,7 +9,7 @@ static void		*match_fractal(char *av)
 	else if (ft_strequ(av, "newton"))
 		return (&fractal_newton);
 	else
-		ft_printf("[%s] is invalid. Valids <fract> {julia, mandel, newton, ...}\n", av);
+		ft_printf("[%s] is invalid. <fract> {julia, mandel, newton, ...}\n", av);
 	return (NULL);
 }
 
@@ -27,9 +27,9 @@ int				main(int ac, char *av[])
 	void		*ft_fract;
 	int			pid;
 
-	i = 1;
 	if (ac < 2)
 		ft_printf("Usage: %s <fract> ... {julia, mandel, newton, ...}\n", av[0]);
+	i = 1;
 	while (i < ac)
 	{
 		if ((ft_fract = match_fractal(av[i])))
