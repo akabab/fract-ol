@@ -27,10 +27,14 @@ void			init_params(t_env *e)
 {
 	if (ft_strequ(e->title, "mandel"))
 	{
-		e->c->a = MANDEL_C_A;
-		e->c->bi = MANDEL_C_BI;
 		e->origin->a = MANDEL_ORIGIN_A;
 		e->origin->bi = MANDEL_ORIGIN_BI;
+		e->zoom = MANDEL_ZOOM;
+	}
+	else if (ft_strequ(e->title, "ark"))
+	{
+		e->origin->a = ARK_ORIGIN_A;
+		e->origin->bi = ARK_ORIGIN_BI;
 		e->zoom = MANDEL_ZOOM;
 	}
 	else
