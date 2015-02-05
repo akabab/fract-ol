@@ -41,7 +41,7 @@ void			init_params(t_env *e)
 		e->origin->bi = 0;
 		e->zoom = 1.0;
 	}
-	e->step = 5;
+	e->step = 1;
 	e->start = 0;
 	e->range = PALETTE_SIZE - 1;
 }
@@ -50,6 +50,17 @@ t_env			*init_env(char *title)
 {
 	t_env	*e;
 
+	t_color	c1 = hexToRgb(0x0D70C6);
+	t_color	c2 = hexToRgb(0xDBAB00);
+	// t_color	c2 = hexToRgb(0xE01A66);
+	// t_color	c2 = hexToRgb(0x8E1311);
+
+	// c1.r = 0.2;
+	// c1.g = 0.37;
+	// c1.b = 0.5;
+	// c2.r = 0.05;
+	// c2.g = 0.11;
+	// c2.b = 0.84;
 	if (!(e = malloc(sizeof(t_env))))
 		exit(-1);
 	if (!(e->mlx = mlx_init()))
@@ -64,7 +75,7 @@ t_env			*init_env(char *title)
 		exit(-1);
 	if (!(e->origin = malloc(sizeof(t_z))))
 		exit(-1);
-	if (!(e->palette = generate_palette(PALETTE_SIZE)))
+	if (!(e->palette = generate_bw_gradient_palette(c1, c2, PALETTE_SIZE)))
 		exit(-1);
 	e->title = title;
 	init_params(e);

@@ -54,7 +54,7 @@ int			fractal_julia(int x, int y, t_env *e)
 		z.bi = 2 * cp * z.bi + e->c->bi;
 		i++;
 	}
-	if (i == 0)
+	if (i == MAX_ITER)
 		return (0x000000);
 	return (e->palette[e->start + ((i * e->step) % e->range)]);
 	// return (hue_to_color(i * 2));

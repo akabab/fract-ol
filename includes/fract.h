@@ -9,10 +9,10 @@
 # include <unistd.h>
 # include <mlx.h>
 # include </usr/X11R6/include/X11/X.h>
-# include <X11/Xutil.h>
+# include </usr/X11R6/include/X11/Xutil.h>
 
-# define W_WIDTH			800
-# define W_HEIGHT			800
+# define W_WIDTH			2400
+# define W_HEIGHT			1200
 
 # define KEY_UP				65362
 # define KEY_DOWN			65364
@@ -38,7 +38,7 @@
 # define RANGE_C			0.02
 # define RANGE_ORIGIN		0.05
 
-# define MAX_ITER			180
+# define MAX_ITER			360
 
 # define MANDEL_C_A			-0.62
 # define MANDEL_C_BI		-1.18
@@ -151,10 +151,23 @@ double		ft_abs_double(double n);
 /*
 **		color.c
 */
-# define PALETTE_SIZE	360
+# define PALETTE_SIZE	720
 
+typedef struct		s_color
+{
+	double			r;
+	double			g;
+	double			b;
+}					t_color;
+
+t_color	hexToRgb(int hex);
+int		rgbToHex(double r, double g, double b);
+
+int		*generate_bw_gradient_palette(t_color color1, t_color color2, int size);
+int		*generate_b_gradient_palette(t_color color1, t_color color2, int size);
+int		*generate_w_gradient_palette(t_color color1, t_color color2, int size);
+int		*generate_gradient_palette(t_color color1, t_color color2, int size);
 int		*generate_palette(int size);
 void	draw_palette(int *palette, int size, t_env *e);
-
 
 #endif

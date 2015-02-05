@@ -2,8 +2,19 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <math.h>
 
-int		rgbToHex(float r, float g, float b)
+t_color	hexToRgb(int hex)
+{
+	t_color	col;
+
+	col.r = (double)((hex >> 16) % 256) / 255;
+	col.g = (double)((hex >> 8) % 256) / 255;
+	col.b = (double)(hex % 256) / 255;
+	return (col);
+}
+
+int		rgbToHex(double r, double g, double b)
 {
 	int		hexColor;
 
@@ -21,12 +32,195 @@ int		rgbToHex(float r, float g, float b)
 	return (hexColor);
 }
 
-typedef struct		s_color
+// BLACK---C1--------WHITE--------C2---BLACK
+int		*generate_bw_gradient_palette(t_color color1, t_color color2, int size)
 {
-	float		r;
-	float		g;
-	float		b;
-}					t_color;
+	int			*palette;
+	int			i;
+	t_color		b_offset_col1;
+	t_color		b_offset_col2;
+	t_color		w_offset_col1;
+	t_color		w_offset_col2;
+	t_color		gradient_col;
+
+	b_offset_col1.r = (color1.r - 0.0) / (size / 4);
+	b_offset_col1.g = (color1.g - 0.0) / (size / 4);
+	b_offset_col1.b = (color1.b - 0.0) / (size / 4);
+
+	b_offset_col2.r = (color2.r - 0.0) / (size / 4);
+	b_offset_col2.g = (color2.g - 0.0) / (size / 4);
+	b_offset_col2.b = (color2.b - 0.0) / (size / 4);
+
+	w_offset_col1.r = (1.0 - color1.r) / (size / 4);
+	w_offset_col1.g = (1.0 - color1.g) / (size / 4);
+	w_offset_col1.b = (1.0 - color1.b) / (size / 4);
+
+	w_offset_col2.r = (1.0 - color2.r) / (size / 4);
+	w_offset_col2.g = (1.0 - color2.g) / (size / 4);
+	w_offset_col2.b = (1.0 - color2.b) / (size / 4);
+
+	gradient_col.r = 0.0;
+	gradient_col.g = 0.0;
+	gradient_col.b = 0.0;
+	i = 0;
+	if ((palette = (int *)malloc(sizeof(int) * size)))
+	{
+		while (i < size)
+		{
+			if (i < size * 1/4)
+			{
+				gradient_col.r += b_offset_col1.r;
+				gradient_col.g += b_offset_col1.g;
+				gradient_col.b += b_offset_col1.b;
+			}
+			else if (i < size * 2/4)
+			{
+				gradient_col.r += w_offset_col1.r;
+				gradient_col.g += w_offset_col1.g;
+				gradient_col.b += w_offset_col1.b;
+			}
+			else if (i < size * 3/4)
+			{
+				gradient_col.r -= w_offset_col2.r;
+				gradient_col.g -= w_offset_col2.g;
+				gradient_col.b -= w_offset_col2.b;
+			}
+			else
+			{
+				gradient_col.r -= b_offset_col2.r;
+				gradient_col.g -= b_offset_col2.g;
+				gradient_col.b -= b_offset_col2.b;
+			}
+			palette[i] = rgbToHex(gradient_col.r, gradient_col.g, gradient_col.b);
+			i++;
+		}
+	}
+	return (palette);
+}
+
+// BLACK---C1----------------C2---BLACK
+int		*generate_b_gradient_palette(t_color color1, t_color color2, int size)
+{
+	int			*palette;
+	int			i;
+	t_color		b_offset_col1;
+	t_color		b_offset_col2;
+	t_color		offset_col;
+	t_color		gradient_col;
+
+	b_offset_col1.r = (color1.r - 0.0) / (size / 4);
+	b_offset_col1.g = (color1.g - 0.0) / (size / 4);
+	b_offset_col1.b = (color1.b - 0.0) / (size / 4);
+
+	b_offset_col2.r = (color2.r - 0.0) / (size / 4);
+	b_offset_col2.g = (color2.g - 0.0) / (size / 4);
+	b_offset_col2.b = (color2.b - 0.0) / (size / 4);
+
+	offset_col.r = (color2.r - color1.r) / (size / 2);
+	offset_col.g = (color2.g - color1.g) / (size / 2);
+	offset_col.b = (color2.b - color1.b) / (size / 2);
+
+	gradient_col.r = 0.0;
+	gradient_col.g = 0.0;
+	gradient_col.b = 0.0;
+	i = 0;
+	if ((palette = (int *)malloc(sizeof(int) * size)))
+	{
+		while (i < size)
+		{
+			if (i < size * 1/4)
+			{
+				gradient_col.r += b_offset_col1.r;
+				gradient_col.g += b_offset_col1.g;
+				gradient_col.b += b_offset_col1.b;
+			}
+			else if (i < size * 3/4)
+			{
+				gradient_col.r += offset_col.r;
+				gradient_col.g += offset_col.g;
+				gradient_col.b += offset_col.b;
+			}
+			else
+			{
+				gradient_col.r -= b_offset_col2.r;
+				gradient_col.g -= b_offset_col2.g;
+				gradient_col.b -= b_offset_col2.b;
+			}
+			palette[i] = rgbToHex(gradient_col.r, gradient_col.g, gradient_col.b);
+			i++;
+		}
+	}
+	return (palette);
+}
+
+// C1 --------WHITE-------- C2
+int		*generate_w_gradient_palette(t_color color1, t_color color2, int size)
+{
+	int			*palette;
+	int			i;
+	t_color		offset_col1;
+	t_color		offset_col2;
+	t_color		gradient_col;
+
+	offset_col1.r = (1.0 - color1.r) / (size / 2);
+	offset_col1.g = (1.0 - color1.g) / (size / 2);
+	offset_col1.b = (1.0 - color1.b) / (size / 2);
+
+	offset_col2.r = (1.0 - color2.r) / (size / 2);
+	offset_col2.g = (1.0 - color2.g) / (size / 2);
+	offset_col2.b = (1.0 - color2.b) / (size / 2);
+
+	gradient_col = color1;
+	i = 0;
+	if ((palette = (int *)malloc(sizeof(int) * size)))
+	{
+		while (i < size)
+		{
+			if (i < size / 2)
+			{
+				gradient_col.r += offset_col1.r;
+				gradient_col.g += offset_col1.g;
+				gradient_col.b += offset_col1.b;
+			}
+			else
+			{
+				gradient_col.r -= offset_col2.r;
+				gradient_col.g -= offset_col2.g;
+				gradient_col.b -= offset_col2.b;
+			}
+			palette[i] = rgbToHex(gradient_col.r, gradient_col.g, gradient_col.b);
+			i++;
+		}
+	}
+	return (palette);
+}
+
+// C1 --------------------- C2
+int		*generate_gradient_palette(t_color color1, t_color color2, int size)
+{
+	int			*palette;
+	int			i;
+	t_color		offset_col;
+	t_color		gradient_col;
+
+	offset_col.r = (color2.r - color1.r) / size;
+	offset_col.g = (color2.g - color1.g) / size;
+	offset_col.b = (color2.b - color1.b) / size;
+	gradient_col = color1;
+	i = 0;
+	if ((palette = (int *)malloc(sizeof(int) * size)))
+	{
+		while (i < size)
+		{
+			gradient_col.r += offset_col.r;
+			gradient_col.g += offset_col.g;
+			gradient_col.b += offset_col.b;
+			palette[i] = rgbToHex(gradient_col.r, gradient_col.g, gradient_col.b);
+			i++;
+		}
+	}
+	return (palette);
+}
 
 int		*generate_palette(int size)
 {
@@ -34,7 +228,7 @@ int		*generate_palette(int size)
 	int			i;
 	t_color		color;
 	int			r;
-	float		offset;
+	double		offset;
 
 	if ((palette = (int *)malloc(sizeof(int) * size)))
 	{
@@ -42,7 +236,7 @@ int		*generate_palette(int size)
 		color.g = 0.0;
 		color.b = 0.0;
 		r = size / 6;
-		offset = (float)(1.0 / r);
+		offset = (double)(1.0 / r);
 		// printf("r: %d, offset:%f\n", r, offset);
 		i = 0;
 		while (i < size)
