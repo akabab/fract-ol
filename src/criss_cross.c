@@ -79,7 +79,10 @@ int			fractal_mandelbrot(int x, int y, t_env *e)
 		z.bi = 2 * cp * z.bi + const_z.bi;
 		i++;
 	}
-	return (hue_to_color(i * 2));
+	if (i == MAX_ITER)
+		return (0x000000);
+	return (e->palette[e->start + ((i * e->step) % e->range)]);
+	// return (hue_to_color(i * 2));
 }
 
 void		criss_cross(t_env *e, int (*f_fract)(int, int, t_env *))

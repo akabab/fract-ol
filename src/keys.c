@@ -56,7 +56,7 @@ int		key_press(int keycode, t_env *e)
 		e->keys->up = TRUE;
 	if (keycode == KEY_DOWN)
 		e->keys->down = TRUE;
-	printf("Key (pressed) code: [%d]\n", keycode);
+	// printf("Key (pressed) code: [%d]\n", keycode);
 	return (0);
 }
 

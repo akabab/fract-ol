@@ -1,5 +1,4 @@
-#include "fract.h"
-
+#include "color.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
@@ -8,9 +7,12 @@ t_color	hexToRgb(int hex)
 {
 	t_color	col;
 
-	col.r = (double)((hex >> 16) % 256) / 255;
-	col.g = (double)((hex >> 8) % 256) / 255;
-	col.b = (double)(hex % 256) / 255;
+	// col.r = (double)((hex >> 16) % 256) / 255;
+	// col.g = (double)((hex >> 8) % 256) / 255;
+	// col.b = (double)(hex % 256) / 255;
+	col.r = (double)((hex & 0xFF0000) >> 16) / 255;
+	col.g = (double)((hex & 0x00FF00) >> 8 ) / 255;
+	col.b = (double)((hex & 0x0000FF)      ) / 255;
 	return (col);
 }
 
@@ -270,30 +272,4 @@ void	print_palette(int *palette, int size)
 		printf("[%d] %x\n", i, palette[i]);
 		i++;
 	}
-}
-
-void	draw_palette(int *palette, int size, t_env *e)
-{
-	int	x;
-	int	y;
-
-	y = 0;
-	while (y < size)
-	{
-		x = 0;
-		while (x < 20)
-		{
-			// printf("[%d] %x\n", i, palette[i]);
-			my_pixel_put_to_image(e->img, x, y, palette[y]);
-			x++;
-		}
-		y++;
-	}
-	//cursor
-	x = 0;
-	while (x++ < 25)
-		my_pixel_put_to_image(e->img, x, e->start, 0xFFFFF);
-	x = 0;
-	while (x++ < 25)
-		my_pixel_put_to_image(e->img, x, (e->start + e->range) % PALETTE_SIZE, 0xFFFFF);
 }
