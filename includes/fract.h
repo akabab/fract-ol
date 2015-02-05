@@ -96,7 +96,7 @@ typedef struct		s_env
 void		criss_cross(t_env *e, int (*ft)(int, int, t_env *));
 int			fractal_julia(int x, int y, t_env *e);
 int			fractal_mandelbrot(int x, int y, t_env *e);
-int			fractal_newton(int x, int y, t_env *e);
+int			fractal_ark(int x, int y, t_env *e);
 
 /*
 **		env.c
@@ -117,6 +117,7 @@ t_keys		*init_keys(void);
 **		draw.c
 */
 void		my_pixel_put_to_image(t_img *img, int x, int y, int color);
+void		draw_line(int color, t_coord *pt1, t_coord *pt2, t_img *e);
 
 /*
 **		hook.c
@@ -138,6 +139,8 @@ void		mlx_handler(t_env *e);
 t_z			*coord_to_z(int x, int y, t_env *e);
 double		z_xtoa(int x, t_env *e);
 double		z_ytobi(int y, t_env *e);
+int			atox(double a, t_env *e);
+int			bitoy(double bi, t_env *e);
 
 /*
 **		tools.c

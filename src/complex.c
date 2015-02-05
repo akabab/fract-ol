@@ -27,3 +27,23 @@ double		z_ytobi(int y, t_env *e)
 	size = 4. / W_WIDTH * e->zoom;
 	return ((W_HEIGHT / 2) * size - (double)y * size + e->origin->bi);
 }
+
+int			atox(double a, t_env *e)
+{
+	int		x;
+	double	size;
+
+	size = 4. / W_WIDTH * e->zoom;
+	x = (int)(((W_WIDTH / 2) * size - e->origin->a + a) / size);
+	return (x);
+}
+
+int			bitoy(double bi, t_env *e)
+{
+	int		y;
+	double	size;
+
+	size = 4. / W_WIDTH * e->zoom;
+	y = (int)(((W_HEIGHT / 2) * size - bi + e->origin->bi) / size);
+	return (y);
+}
