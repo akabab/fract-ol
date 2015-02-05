@@ -34,6 +34,34 @@ int		rgbToHex(double r, double g, double b)
 	return (hexColor);
 }
 
+void	color_add(t_color *col1, t_color *col2)
+{
+	col1->r += col2->r;
+	col1->g += col2->g;
+	col1->b += col2->b;
+}
+
+void	color_sub(t_color *col1, t_color *col2)
+{
+	col1->r -= col2->r;
+	col1->g -= col2->g;
+	col1->b -= col2->b;
+}
+
+void	color_mul(t_color *col1, double factor)
+{
+	col1->r *= factor;
+	col1->g *= factor;
+	col1->b *= factor;
+}
+
+void	color_div(t_color *col1, double factor)
+{
+	col1->r /= factor;
+	col1->g /= factor;
+	col1->b /= factor;
+}
+
 // BLACK---C1--------WHITE--------C2---BLACK
 int		*generate_bw_gradient_palette(t_color color1, t_color color2, int size)
 {
@@ -70,29 +98,13 @@ int		*generate_bw_gradient_palette(t_color color1, t_color color2, int size)
 		while (i < size)
 		{
 			if (i < size * 1/4)
-			{
-				gradient_col.r += b_offset_col1.r;
-				gradient_col.g += b_offset_col1.g;
-				gradient_col.b += b_offset_col1.b;
-			}
+				color_add(&gradient_col, &b_offset_col1);
 			else if (i < size * 2/4)
-			{
-				gradient_col.r += w_offset_col1.r;
-				gradient_col.g += w_offset_col1.g;
-				gradient_col.b += w_offset_col1.b;
-			}
+				color_add(&gradient_col, &w_offset_col1);
 			else if (i < size * 3/4)
-			{
-				gradient_col.r -= w_offset_col2.r;
-				gradient_col.g -= w_offset_col2.g;
-				gradient_col.b -= w_offset_col2.b;
-			}
+				color_sub(&gradient_col, &w_offset_col2);
 			else
-			{
-				gradient_col.r -= b_offset_col2.r;
-				gradient_col.g -= b_offset_col2.g;
-				gradient_col.b -= b_offset_col2.b;
-			}
+				color_sub(&gradient_col, &b_offset_col2);
 			palette[i] = rgbToHex(gradient_col.r, gradient_col.g, gradient_col.b);
 			i++;
 		}

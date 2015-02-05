@@ -3,6 +3,15 @@
 
 # define PALETTE_SIZE	360
 
+# define COL_BLACK		0x000000
+# define COL_WHITE		0xFFFFFF
+# define COL_RED		0xFF0000
+# define COL_BLUE		0x00FF00
+# define COL_GREEN		0x0000FF
+# define COL_CYAN		0x00FFFF
+# define COL_YELLOW		0xFFFF00
+# define COL_PURPLE		0xFF00FF
+
 typedef struct		s_color
 {
 	double			r;
