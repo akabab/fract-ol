@@ -8,6 +8,8 @@ static void		*match_fractal(char *av)
 		return (&fractal_mandelbrot);
 	else if (ft_strequ(av, "ark"))
 		return (&fractal_ark);
+	else if (ft_strequ(av, "tree")) /////////////
+		return (&fractal_ark);
 	else
 		ft_printf("[%s] is invalid. <fract> {julia, mandel, ark, ...}\n", av);
 	return (NULL);

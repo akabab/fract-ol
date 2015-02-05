@@ -3,7 +3,10 @@
 int			loop_hook(t_env *e)
 {
 	manage_keys(e);
-	criss_cross(e, e->fract);
+	if (ft_strequ(e->title, "tree"))
+		tree(e);
+	else
+		criss_cross(e, e->fract);
 	mlx_put_image_to_window(e->mlx, e->win, e->img->id, 0, 0);
 	return (0);
 }

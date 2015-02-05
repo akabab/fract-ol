@@ -44,6 +44,10 @@
 # define MANDEL_ORIGIN_BI	-0.04
 # define MANDEL_ZOOM		0.7
 
+# define ARK_ORIGIN_A	-1.625331
+# define ARK_ORIGIN_BI	0.017875
+# define ARK_ZOOM		0.028505
+
 typedef struct		s_img
 {
 	void			*id;
@@ -144,5 +148,11 @@ int			bitoy(double bi, t_env *e);
 **		tools.c
 */
 double		ft_abs_double(double n);
+
+/*
+**		tree.c
+*/
+void		tree(t_env *e);
+
 
 #endif

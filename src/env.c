@@ -35,7 +35,7 @@ void			init_params(t_env *e)
 	{
 		e->origin->a = ARK_ORIGIN_A;
 		e->origin->bi = ARK_ORIGIN_BI;
-		e->zoom = MANDEL_ZOOM;
+		e->zoom = ARK_ZOOM;
 	}
 	else
 	{

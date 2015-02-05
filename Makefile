@@ -14,7 +14,8 @@ SRCS			=	src/main.c						\
 					src/mlx_handler.c				\
 					src/keys.c						\
 					src/complex.c					\
-					src/tools.c
+					src/tools.c						\
+					src/tree.c
 OBJS			=	$(SRCS:src/%.c=obj/%.o)
 
 # COLORS
