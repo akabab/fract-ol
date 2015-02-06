@@ -79,7 +79,10 @@ int			fractal_julia(int x, int y, t_env *e)
 		z.bi = 2 * cp * z.bi + e->c->bi;
 		i++;
 	}
-	return (hue_to_color(i * 2));
+	if (i == MAX_ITER)
+		return (0x000000);
+	return (e->palette[e->start + ((i * e->step) % e->range)]);
+	// return (hue_to_color(i * 2));
 }
 
 int			fractal_mandelbrot(int x, int y, t_env *e)
@@ -101,7 +104,67 @@ int			fractal_mandelbrot(int x, int y, t_env *e)
 		z.bi = 2 * cp * z.bi + const_z.bi;
 		i++;
 	}
-	return (hue_to_color(i * 2));
+	if (i == MAX_ITER)
+		return (0x000000);
+	return (e->palette[e->start + ((i * e->step) % e->range)]);
+	// return (hue_to_color(i * 2));
+}
+
+#define TH_N_LINE 60
+
+typedef struct	s_th_data
+{
+	t_env	*e;
+	int		start_y;
+}				t_th_data;
+
+static void * fn_compute_img (void * p_data)
+{
+	int			x;
+	int			y;
+	t_th_data	*data;
+	int			color;
+
+	data = (t_th_data *)p_data;
+	y = data->start_y;
+	while (y < data->start_y + TH_N_LINE && y < W_HEIGHT)
+	{
+		x = 0;
+		while (x != W_WIDTH)
+		{
+			color = data->e->fract(x, y, data->e);
+			my_pixel_put_to_image(data->e->img, x, y, color);
+			x++;
+		}
+		y++;
+	}
+}
+
+void		compute_fract(t_env *e)
+{
+	t_th_data	data[60];
+	pthread_t	threads[60];
+	int			i;
+	int			ret;
+
+	i = 0;
+	while (i < 60)
+	{
+		ret = 0;
+		data[i].e = e;
+		data[i].start_y = i * TH_N_LINE;
+		ret = pthread_create(&threads[i], NULL, fn_compute_img, &data[i]);
+		if (ret)
+			printf("ERROR\n");
+		i++;
+	}
+	//wait for threads to finish
+	i = 0;
+	while (i < 60)
+	{
+		pthread_join(threads[i], NULL);
+		i++;
+	}
 }
 
 void		criss_cross(t_env *e, int (*f_fract)(int, int, t_env *))

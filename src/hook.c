@@ -19,7 +19,7 @@ int				key_hook(int keycode, t_env *e)
 {
 	// useless -- overwritten by key_pressed & key_released
 	(void)e;
-	printf("Key (released) code: [%d]\n", keycode);
+	// printf("Key (released) code: [%d]\n", keycode);
 	return (0);
 }
 

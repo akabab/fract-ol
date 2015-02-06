@@ -6,7 +6,9 @@ int			loop_hook(t_env *e)
 	if (ft_strequ(e->title, "tree"))
 		tree(e);
 	else
-		criss_cross(e, e->fract);
+		compute_fract(e);
+		// criss_cross(e, e->fract);
+	draw_palette(e->palette, PALETTE_SIZE, e);
 	mlx_put_image_to_window(e->mlx, e->win, e->img->id, 0, 0);
 	return (0);
 }

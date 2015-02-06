@@ -3,16 +3,18 @@
 
 # include "libft.h"
 # include "list.h"
+# include "color.h"
 # include <stdlib.h>
 # include <stdio.h>
 # include <string.h>
 # include <unistd.h>
+# include <pthread.h>
 # include <mlx.h>
 # include </usr/X11R6/include/X11/X.h>
-# include <X11/Xutil.h>
+# include </usr/X11R6/include/X11/Xutil.h>
 
-# define W_WIDTH			800
-# define W_HEIGHT			800
+# define W_WIDTH			2400
+# define W_HEIGHT			1200
 
 # define KEY_UP				65362
 # define KEY_DOWN			65364
@@ -36,9 +38,9 @@
 # define ZOOM_OUT_FACTOR	1.1
 
 # define RANGE_C			0.02
-# define RANGE_ORIGIN		0.05
+# define RANGE_ORIGIN		0.005
 
-# define MAX_ITER			180
+# define MAX_ITER			360
 
 # define MANDEL_ORIGIN_A	-0.62
 # define MANDEL_ORIGIN_BI	-0.04
@@ -86,15 +88,21 @@ typedef struct		s_env
 	t_img			*img;
 	char			*title;
 	t_keys			*keys;
+	int				*palette;
 	int				(*fract)(int, int, struct s_env *);
 	t_z				*c;
 	t_z				*origin;
 	double			zoom;
+	int				step;
+	int				start;
+	int				range;
 }					t_env;
 
 /*
 **		criss_cross.c
 */
+void		compute_fract(t_env *e);
+
 void		criss_cross(t_env *e, int (*ft)(int, int, t_env *));
 int			fractal_julia(int x, int y, t_env *e);
 int			fractal_mandelbrot(int x, int y, t_env *e);
@@ -120,6 +128,9 @@ t_keys		*init_keys(void);
 */
 void		my_pixel_put_to_image(t_img *img, int x, int y, int color);
 void		draw_line(int color, t_coord *pt1, t_coord *pt2, t_img *e);
+
+void	draw_palette(int *palette, int size, t_env *e); //
+
 
 /*
 **		hook.c

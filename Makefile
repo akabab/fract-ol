@@ -1,5 +1,5 @@
-CC				=	gcc
-FLAGS			=	-g -Wall -Wextra -Werror
+CC				=	gcc -lpthread
+FLAGS			=	#-g -Wall -Wextra -Werror
 NAME			=	fractol
 LIB				=	libft/libft.a
 LIB_PATH		=	libft/
@@ -15,7 +15,9 @@ SRCS			=	src/main.c						\
 					src/keys.c						\
 					src/complex.c					\
 					src/tools.c						\
-					src/tree.c
+					src/tree.c						\
+					src/color.c						\
+					src/tools.c
 OBJS			=	$(SRCS:src/%.c=obj/%.o)
 
 # COLORS
