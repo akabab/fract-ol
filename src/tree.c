@@ -79,6 +79,31 @@ static void		clean(t_env *e)
 	}
 }
 
+void			forest(int deep, t_z start, t_z next, t_env *e)
+{
+	double		length;
+	double		height;
+	double		dist;
+	t_z			pt1;
+	t_z			pt2;
+
+	branch(0, start, next, e);
+	if (deep > 5 || (deep > e->c->a + 2))
+		return ;
+	deep++;
+	length = next.bi - start.bi;
+	height = length * 2./5;
+	dist = length * 3./5;
+	pt1.a = start.a + dist;
+	pt1.bi = start.bi;
+	pt2.a = pt1.a;
+	pt2.bi = pt1.bi + height;
+	forest(deep, pt1, pt2, e);
+	pt1.a = start.a - dist;
+	pt2.a = pt1.a;
+	forest(deep, pt1, pt2, e);
+}
+
 
 void			tree(t_env *e)
 {
@@ -86,14 +111,14 @@ void			tree(t_env *e)
 	t_z		start;
 	t_z		next;
 
-	deep = 0;
 	clean(e);
 	start.a = 0;
 	start.bi = 0;
 	next.a = 0;
 	next.bi = 2.;
 	deep = 0;
-	branch(deep, start, next, e);
+	forest(deep, start, next, e);
+/*	branch(deep, start, next, e);
 	start.a = 1;
 	next.a = start.a;
 	start.bi = 0;
@@ -101,5 +126,5 @@ void			tree(t_env *e)
 	branch(deep, start, next, e);
 	start.a = -1;
 	next.a = start.a;
-	branch(deep, start, next, e);
+	branch(deep, start, next, e);*/
 }

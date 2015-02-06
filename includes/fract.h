@@ -13,8 +13,8 @@
 # include </usr/X11R6/include/X11/X.h>
 # include </usr/X11R6/include/X11/Xutil.h>
 
-# define W_WIDTH			2400
-# define W_HEIGHT			1200
+# define W_WIDTH			300
+# define W_HEIGHT			300
 
 # define KEY_UP				65362
 # define KEY_DOWN			65364
@@ -107,6 +107,7 @@ void		criss_cross(t_env *e, int (*ft)(int, int, t_env *));
 int			fractal_julia(int x, int y, t_env *e);
 int			fractal_mandelbrot(int x, int y, t_env *e);
 int			fractal_ark(int x, int y, t_env *e);
+int			fractal_bouddha(int x, int y, t_env *e);
 
 /*
 **		env.c
