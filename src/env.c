@@ -43,6 +43,8 @@ void			init_params(t_env *e)
 		e->c->bi = 0.0;
 		e->origin->a = 0;
 		e->origin->bi = 0;
+		if (ft_strequ(e->title, "tree"))
+			e->origin->bi = 2;
 		e->zoom = 1.0;
 	}
 }
