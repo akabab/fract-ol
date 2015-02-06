@@ -22,13 +22,7 @@ int		key_release(int keycode, t_env *e)
 	if (keycode == KEY_RESET)
 		init_params(e);
 	if (keycode == KEY_SPACE)
-	{
-		printf("\n******************\n");
-		printf("c = %f, %fi\n", e->c->a, e->c->bi);
-		printf("zoom = %f\n", e->zoom);
-		printf("origine = %f, %f\n", e->origin->a, e->origin->bi);
-		printf("******************\n");
-	}
+		printf("%lf\n%lf\n%lf\n%lf\n%lf\n", e->c->a, e->c->bi, e->origin->a, e->origin->bi, e->zoom);
 
 	if (keycode == 45)
 		e->start--;

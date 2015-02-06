@@ -8,12 +8,13 @@
 # include <stdio.h>
 # include <string.h>
 # include <unistd.h>
+# include <pthread.h>
 # include <mlx.h>
 # include </usr/X11R6/include/X11/X.h>
 # include </usr/X11R6/include/X11/Xutil.h>
 
-# define W_WIDTH			800
-# define W_HEIGHT			600
+# define W_WIDTH			2400
+# define W_HEIGHT			1200
 
 # define KEY_UP				65362
 # define KEY_DOWN			65364
@@ -37,9 +38,9 @@
 # define ZOOM_OUT_FACTOR	1.1
 
 # define RANGE_C			0.02
-# define RANGE_ORIGIN		0.05
+# define RANGE_ORIGIN		0.005
 
-# define MAX_ITER			720
+# define MAX_ITER			360
 
 # define MANDEL_C_A			-0.62
 # define MANDEL_C_BI		-1.18
@@ -98,6 +99,8 @@ typedef struct		s_env
 /*
 **		criss_cross.c
 */
+void		compute_fract(t_env *e);
+
 void		criss_cross(t_env *e, int (*ft)(int, int, t_env *));
 int			fractal_julia(int x, int y, t_env *e);
 int			fractal_mandelbrot(int x, int y, t_env *e);
