@@ -56,8 +56,8 @@ t_env			*init_env(char *title)
 {
 	t_env	*e;
 
-	t_color	c1 = hexToRgb(0x0D70C6);
-	t_color	c2 = hexToRgb(0xDBAB00);
+	t_color	c1 = hexToRgb(0x0000FF);
+	t_color	c2 = hexToRgb(0xFFFF00);
 
 	if (!(e = malloc(sizeof(t_env))))
 		exit(-1);

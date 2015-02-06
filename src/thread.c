@@ -1,5 +1,7 @@
 #include "fract.h"
 
+static int g_th_done = 0;
+
 static void * compute_part (void * p_data)
 {
 	int			x;
@@ -21,6 +23,8 @@ static void * compute_part (void * p_data)
 		}
 		y++;
 	}
+	g_th_done++;
+	printf("Computing::%d%%\n", (int)(((float)g_th_done / TH_N_THREADS) * 100));
 }
 
 void		thread_compute_fract(t_env *e)
@@ -29,6 +33,10 @@ void		thread_compute_fract(t_env *e)
 	pthread_t	threads[TH_N_THREADS];
 	int			i;
 	int			ret;
+
+	//
+	g_th_done = 0;
+	//
 
 	i = 0;
 	while (i < TH_N_THREADS)

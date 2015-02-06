@@ -93,39 +93,42 @@ int			fractal_mandelbrotB(int x, int y, t_env *e, t_z c)
 	z.a = z_xtoa(x, e);
 	z.bi = z_ytobi(y, e);
 	i = 0;
-	while ((z.a * z.a + z.bi * z.bi) <= 4 && i < 30)
+	while ((z.a * z.a + z.bi * z.bi) <= 4 && i < 50)
 	{
 		cp = z.a;
 		z.a = z.a * z.a - z.bi * z.bi + c.a;
 		z.bi = 2 * cp * z.bi + c.bi;
 		i++;
 	}
-	return (i);
+	return ((i));
 }
 
 int			fractal_bouddha(int x, int y, t_env *e)
 {
-	int		i;
-	int		j;
+	double		i;
+	double		j;
 	t_z		c;
 	int		color;
 
-	color = 0x000000;
-	i = 0;
-	while (i != W_HEIGHT)
+	color = 0;
+	i = -2;
+	while (i < 2)
 	{
-		j = 0;
-		while (j != W_WIDTH)
+		j = -1;
+		while (j < 1)
 		{
-			c.a = z_xtoa(i, e);
-			c.bi = z_ytobi(j, e);
-			if (fractal_mandelbrotB(x, y, e, c) == 30)
-				color += 0x000002;
-			j++;
+//			c.a = z_xtoa(i, e);
+//			c.bi = z_ytobi(j, e);
+			c.a = i;
+			c.bi = j;
+			if (fractal_mandelbrotB(x, y, e, c) == 50)
+				color += 1;
+			j += 0.0234;
 		}
-		i++;
+		i += 0.0234;
 	}
-	return (color);
+//	return (color);
+	return (e->palette[e->start + ((color * e->step) % e->range)]);
 }
 
 int			fractal_mandelbrot(int x, int y, t_env *e)

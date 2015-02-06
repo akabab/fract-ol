@@ -13,8 +13,8 @@
 # include </usr/X11R6/include/X11/X.h>
 # include </usr/X11R6/include/X11/Xutil.h>
 
-# define W_WIDTH			800
-# define W_HEIGHT			600
+# define W_WIDTH			150
+# define W_HEIGHT			150
 
 # define KEY_UP				65362
 # define KEY_DOWN			65364
@@ -166,7 +166,7 @@ void		tree(t_env *e);
 /*
 **		thread.c
 */
-# define TH_N_THREADS	8
+# define TH_N_THREADS	50
 # define TH_N_LINE		((int)(W_HEIGHT / TH_N_THREADS) + 1)
 
 typedef struct	s_th_data
