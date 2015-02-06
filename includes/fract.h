@@ -13,8 +13,8 @@
 # include </usr/X11R6/include/X11/X.h>
 # include </usr/X11R6/include/X11/Xutil.h>
 
-# define W_WIDTH			2400
-# define W_HEIGHT			1200
+# define W_WIDTH			800
+# define W_HEIGHT			600
 
 # define KEY_UP				65362
 # define KEY_DOWN			65364
@@ -34,8 +34,8 @@
 # define SCROLL_UP			4
 # define SCROLL_DOWN		5
 
-# define ZOOM_IN_FACTOR		0.9
-# define ZOOM_OUT_FACTOR	1.1
+# define ZOOM_IN_FACTOR		0.99
+# define ZOOM_OUT_FACTOR	1.01
 
 # define RANGE_C			0.02
 # define RANGE_ORIGIN		0.005
@@ -46,9 +46,9 @@
 # define MANDEL_ORIGIN_BI	-0.04
 # define MANDEL_ZOOM		0.7
 
-# define ARK_ORIGIN_A	-1.625331
-# define ARK_ORIGIN_BI	0.017875
-# define ARK_ZOOM		0.028505
+# define ARK_ORIGIN_A		-1.625331
+# define ARK_ORIGIN_BI		0.017875
+# define ARK_ZOOM			0.028505
 
 typedef struct		s_img
 {
@@ -101,9 +101,7 @@ typedef struct		s_env
 /*
 **		criss_cross.c
 */
-void		compute_fract(t_env *e);
-
-void		criss_cross(t_env *e, int (*ft)(int, int, t_env *));
+void		criss_cross(t_env *e);
 int			fractal_julia(int x, int y, t_env *e);
 int			fractal_mandelbrot(int x, int y, t_env *e);
 int			fractal_ark(int x, int y, t_env *e);
@@ -143,7 +141,6 @@ int			mouse_hook(int button, int x, int y, t_env *e);
 /*
 **		mlx_handler.c
 */
-int			loop_hook(t_env *e);
 void		mlx_handler(t_env *e);
 
 /*
@@ -165,5 +162,18 @@ double		ft_abs_double(double n);
 */
 void		tree(t_env *e);
 
+/*
+**		thread.c
+*/
+# define TH_N_THREADS	8
+# define TH_N_LINE		((int)(W_HEIGHT / TH_N_THREADS) + 1)
+
+typedef struct	s_th_data
+{
+	t_env		*e;
+	int			start_y;
+}				t_th_data;
+
+void		thread_compute_fract(t_env *e);
 
 #endif

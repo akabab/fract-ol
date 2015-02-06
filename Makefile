@@ -7,15 +7,16 @@ INCLUDES		=	-I $(LIB_PATH)./includes -I ./includes -I /usr/X11/include
 DIR_LIBS		=	/usr/X11/lib
 LDFLAGS			=	-L$(DIR_LIBS) -lXext -lX11 -lmlx
 SRCS			=	src/main.c						\
+					src/hook.c						\
+					src/mlx_handler.c				\
 					src/env.c						\
 					src/criss_cross.c				\
 					src/draw.c						\
-					src/hook.c						\
-					src/mlx_handler.c				\
 					src/keys.c						\
 					src/complex.c					\
 					src/tools.c						\
 					src/tree.c						\
+					src/thread.c					\
 					src/color.c						\
 					src/tools.c
 OBJS			=	$(SRCS:src/%.c=obj/%.o)
