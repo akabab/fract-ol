@@ -12,8 +12,8 @@
 # include </usr/X11R6/include/X11/X.h>
 # include </usr/X11R6/include/X11/Xutil.h>
 
-# define W_WIDTH			2400
-# define W_HEIGHT			1200
+# define W_WIDTH			800
+# define W_HEIGHT			600
 
 # define KEY_UP				65362
 # define KEY_DOWN			65364
@@ -39,7 +39,7 @@
 # define RANGE_C			0.02
 # define RANGE_ORIGIN		0.05
 
-# define MAX_ITER			180
+# define MAX_ITER			720
 
 # define MANDEL_C_A			-0.62
 # define MANDEL_C_BI		-1.18

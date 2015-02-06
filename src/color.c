@@ -3,16 +3,21 @@
 #include <stdlib.h>
 #include <math.h>
 
+void	put_color(t_color col)
+{
+	printf("col(%lf,%lf,%lf)\n", col.r, col.g, col.b);
+}
+
 t_color	hexToRgb(int hex)
 {
 	t_color	col;
 
-	// col.r = (double)((hex >> 16) % 256) / 255;
-	// col.g = (double)((hex >> 8) % 256) / 255;
-	// col.b = (double)(hex % 256) / 255;
-	col.r = (double)((hex & 0xFF0000) >> 16) / 255;
-	col.g = (double)((hex & 0x00FF00) >> 8 ) / 255;
-	col.b = (double)((hex & 0x0000FF)      ) / 255;
+	col.r = (double)((hex >> 16) % 256) / 255;
+	col.g = (double)((hex >> 8) % 256) / 255;
+	col.b = (double)(hex % 256) / 255;
+	// col.r = (double)((hex & 0xFF0000) >> 16) / 255;
+	// col.g = (double)((hex & 0x00FF00) >> 8 ) / 255;
+	// col.b = (double)((hex & 0x0000FF)      ) / 255;
 	return (col);
 }
 
@@ -34,32 +39,48 @@ int		rgbToHex(double r, double g, double b)
 	return (hexColor);
 }
 
-void	color_add(t_color *col1, t_color *col2)
+t_color	color_add(t_color col1, t_color col2)
 {
-	col1->r += col2->r;
-	col1->g += col2->g;
-	col1->b += col2->b;
+	t_color	result;
+
+	result = col1;
+	result.r += col2.r;
+	result.g += col2.g;
+	result.b += col2.b;
+	return (result);
 }
 
-void	color_sub(t_color *col1, t_color *col2)
+t_color	color_sub(t_color col1, t_color col2)
 {
-	col1->r -= col2->r;
-	col1->g -= col2->g;
-	col1->b -= col2->b;
+	t_color	result;
+
+	result = col1;
+	result.r -= col2.r;
+	result.g -= col2.g;
+	result.b -= col2.b;
+	return (result);
 }
 
-void	color_mul(t_color *col1, double factor)
+t_color	color_mul(t_color col, double factor)
 {
-	col1->r *= factor;
-	col1->g *= factor;
-	col1->b *= factor;
+	t_color	result;
+
+	result = col;
+	result.r *= factor;
+	result.g *= factor;
+	result.b *= factor;
+	return (result);
 }
 
-void	color_div(t_color *col1, double factor)
+t_color	color_div(t_color col, double factor)
 {
-	col1->r /= factor;
-	col1->g /= factor;
-	col1->b /= factor;
+	t_color	result;
+
+	result = col;
+	result.r /= factor;
+	result.g /= factor;
+	result.b /= factor;
+	return (result);
 }
 
 // BLACK---C1--------WHITE--------C2---BLACK
@@ -73,38 +94,24 @@ int		*generate_bw_gradient_palette(t_color color1, t_color color2, int size)
 	t_color		w_offset_col2;
 	t_color		gradient_col;
 
-	b_offset_col1.r = (color1.r - 0.0) / (size / 4);
-	b_offset_col1.g = (color1.g - 0.0) / (size / 4);
-	b_offset_col1.b = (color1.b - 0.0) / (size / 4);
-
-	b_offset_col2.r = (color2.r - 0.0) / (size / 4);
-	b_offset_col2.g = (color2.g - 0.0) / (size / 4);
-	b_offset_col2.b = (color2.b - 0.0) / (size / 4);
-
-	w_offset_col1.r = (1.0 - color1.r) / (size / 4);
-	w_offset_col1.g = (1.0 - color1.g) / (size / 4);
-	w_offset_col1.b = (1.0 - color1.b) / (size / 4);
-
-	w_offset_col2.r = (1.0 - color2.r) / (size / 4);
-	w_offset_col2.g = (1.0 - color2.g) / (size / 4);
-	w_offset_col2.b = (1.0 - color2.b) / (size / 4);
-
-	gradient_col.r = 0.0;
-	gradient_col.g = 0.0;
-	gradient_col.b = 0.0;
+	b_offset_col1 = color_div(color1, size / 4);
+	b_offset_col2 = color_div(color2, size / 4);
+	w_offset_col1 = color_div(color_sub(hexToRgb(COL_WHITE), color1), size / 4);
+	w_offset_col2 = color_div(color_sub(hexToRgb(COL_WHITE), color2), size / 4);
+	gradient_col = hexToRgb(COL_BLACK);
 	i = 0;
 	if ((palette = (int *)malloc(sizeof(int) * size)))
 	{
 		while (i < size)
 		{
 			if (i < size * 1/4)
-				color_add(&gradient_col, &b_offset_col1);
+				gradient_col = color_add(gradient_col, b_offset_col1);
 			else if (i < size * 2/4)
-				color_add(&gradient_col, &w_offset_col1);
+				gradient_col = color_add(gradient_col, w_offset_col1);
 			else if (i < size * 3/4)
-				color_sub(&gradient_col, &w_offset_col2);
+				gradient_col = color_sub(gradient_col, w_offset_col2);
 			else
-				color_sub(&gradient_col, &b_offset_col2);
+				gradient_col = color_sub(gradient_col, b_offset_col2);
 			palette[i] = rgbToHex(gradient_col.r, gradient_col.g, gradient_col.b);
 			i++;
 		}
