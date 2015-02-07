@@ -1,18 +1,6 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   draw.c                                             :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: ycribier <ycribier@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/01/30 11:13:50 by ycribier          #+#    #+#             */
-/*   Updated: 2015/02/05 11:41:48 by jspezia          ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "fract.h"
 
-void			my_pixel_put_to_image(t_img *img, int x, int y, int color)
+void	my_pixel_put_to_image(t_img *img, int x, int y, int color)
 {
 	int				i;
 	int				mask;
@@ -108,5 +96,6 @@ void	draw_palette(int *palette, int size, t_env *e)
 		my_pixel_put_to_image(e->img, x, e->start, 0xFFFFF);
 	x = 0;
 	while (x++ < 25)
-		my_pixel_put_to_image(e->img, x, (e->start + e->range) % PALETTE_SIZE, 0xFFFFF);
+		my_pixel_put_to_image(e->img, x,
+				(e->start + e->range) % PALETTE_SIZE, 0xFFFFF);
 }

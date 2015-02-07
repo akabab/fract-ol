@@ -10,15 +10,18 @@ SRCS			=	src/main.c						\
 					src/hook.c						\
 					src/mlx_handler.c				\
 					src/env.c						\
-					src/criss_cross.c				\
 					src/draw.c						\
 					src/keys.c						\
 					src/complex.c					\
 					src/tools.c						\
 					src/tree.c						\
+					src/branch.c					\
 					src/thread.c					\
 					src/color.c						\
-					src/tools.c
+					src/tools.c						\
+					src/julia.c						\
+					src/ark.c						\
+					src/mandelbrot.c
 OBJS			=	$(SRCS:src/%.c=obj/%.o)
 
 # COLORS

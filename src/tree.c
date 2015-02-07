@@ -1,64 +1,5 @@
 #include "fract.h"
 
-static void		branch(int deep, t_z start, t_z next, t_env *e);
-
-static void		leaf(int deep, t_z start, t_z next, t_env *e)
-{
-	double		lenght;
-	t_z			pt;
-
-	lenght = ft_abs_double(start.a - next.a) > ft_abs_double(start.bi - next.bi)
-		? ft_abs_double(start.a - next.a) : ft_abs_double(start.bi - next.bi);
-	lenght *= 2./5;
-	if (start.bi == next.bi)
-	{
-		pt.a = (start.a > next.a) ? next.a - lenght : next.a + lenght;
-		pt.bi = next.bi;
-		branch(deep, next, pt, e);
-		pt.a = next.a;
-		pt.bi = next.bi + lenght;
-		branch(deep, next, pt, e);
-		pt.bi = next.bi - lenght;
-		branch(deep, next, pt, e);
-	}
-	if (start.a == next.a)
-	{
-		pt.a = next.a;
-		pt.bi = (start.bi > next.bi) ? next.bi - lenght : next.bi + lenght;
-		branch(deep, next, pt, e);
-		pt.bi = next.bi;
-		pt.a = next.a + lenght;
-		branch(deep, next, pt, e);
-		pt.a = next.a - lenght;
-		branch(deep, next, pt, e);
-	}
-}
-
-static void		branch(int deep, t_z start, t_z next, t_env *e)
-{
-	t_coord		first;
-	t_coord		second;
-	int			color;
-	int			i;
-
-	if (deep > (int)((e->c->bi - 1.) * 5) || deep > 10)
-		return;
-	color = 0xaa5500;
-	i = 0;
-	while (i != deep)
-	{
-		color -= 0x110000;
-		i++;
-	}
-	first.x = atox(start.a, e);
-	first.y = bitoy(start.bi, e);
-	second.x = atox(next.a, e);
-	second.y = bitoy(next.bi, e);
-	draw_line(color, &first, &second, e->img);
-	deep++;
-	leaf(deep, start, next, e);
-}
-
 static void		clean(t_env *e)
 {
 	int		i;
@@ -79,7 +20,7 @@ static void		clean(t_env *e)
 	}
 }
 
-void			forest(int deep, t_z start, t_z next, t_env *e)
+static void		forest(int deep, t_z start, t_z next, t_env *e)
 {
 	double		length;
 	double		height;
@@ -92,8 +33,8 @@ void			forest(int deep, t_z start, t_z next, t_env *e)
 		return ;
 	deep++;
 	length = next.bi - start.bi;
-	height = length * 2./5;
-	dist = length * 3./5;
+	height = length * (2. / 5);
+	dist = length * (3. / 5);
 	pt1.a = start.a + dist;
 	pt1.bi = start.bi;
 	pt2.a = pt1.a;
@@ -103,7 +44,6 @@ void			forest(int deep, t_z start, t_z next, t_env *e)
 	pt2.a = pt1.a;
 	forest(deep, pt1, pt2, e);
 }
-
 
 void			tree(t_env *e)
 {
@@ -118,13 +58,14 @@ void			tree(t_env *e)
 	next.bi = 2.;
 	deep = 0;
 	forest(deep, start, next, e);
-/*	branch(deep, start, next, e);
-	start.a = 1;
-	next.a = start.a;
-	start.bi = 0;
-	next.bi = 0.75;
-	branch(deep, start, next, e);
-	start.a = -1;
-	next.a = start.a;
-	branch(deep, start, next, e);*/
+}
+
+void			init_tree(t_env *e)
+{
+	e->c->a = TREE_CONST_A;
+	e->c->bi = TREE_CONST_BI;
+	e->origin->a = TREE_ORIGIN_A;
+	e->origin->bi = TREE_ORIGIN_BI;
+	e->zoom = TREE_ZOOM;
+	e->show_palette = FALSE;
 }

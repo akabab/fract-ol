@@ -18,13 +18,13 @@ static void * compute_part (void * p_data)
 		while (x < W_WIDTH)
 		{
 			color = data->e->fract(x, y, data->e);
-			my_pixel_put_to_image(data->e->img, x, y, color);
+			my_pixel_put_to_image(data->e->img, x, y, color); //
 			x++;
 		}
 		y++;
 	}
 	g_th_done++;
-	printf("Computing::%d%%\n", (int)(((float)g_th_done / TH_N_THREADS) * 100));
+//	printf("Computing::%d%%\n", (int)(((float)g_th_done / TH_N_THREADS) * 100));
 }
 
 void		thread_compute_fract(t_env *e)

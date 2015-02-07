@@ -10,10 +10,9 @@ static void		*match_fractal(char *av)
 		return (&fractal_ark);
 	else if (ft_strequ(av, "tree"))
 		return (&tree);
-	else if (ft_strequ(av, "bou"))
-		return (&fractal_bouddha);
 	else
-		ft_printf("[%s] is invalid. <fract> {julia, mandel, ark, tree, ...}\n", av);
+		ft_printf("[%s] is invalid. <fract> {julia, mandel, ark, tree, ...}\n",
+				av);
 	return (NULL);
 }
 
@@ -32,7 +31,8 @@ int				main(int ac, char *av[])
 	int			pid;
 
 	if (ac < 2)
-		ft_printf("Usage: %s <fract> ... {julia, mandel, ark, tree, ...}\n", av[0]);
+		ft_printf("Usage: %s <fract> ... {julia, mandel, ark, tree, ...}\n",
+				av[0]);
 	i = 1;
 	while (i < ac)
 	{

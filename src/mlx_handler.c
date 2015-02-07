@@ -7,8 +7,8 @@ static int	loop_hook(t_env *e)
 		tree(e);
 	else
 		thread_compute_fract(e);
-		// criss_cross(e);
-	// draw_palette(e->palette, PALETTE_SIZE, e);
+	if (e->show_palette == TRUE)
+		draw_palette(e->palette, PALETTE_SIZE, e);
 	mlx_put_image_to_window(e->mlx, e->win, e->img->id, 0, 0);
 	return (0);
 }

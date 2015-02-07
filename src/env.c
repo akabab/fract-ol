@@ -25,28 +25,23 @@ static t_img	*create_new_image(t_env *e, int width, int height)
 
 void			init_params(t_env *e)
 {
+	t_color	c1;
+	t_color	c2;
+	int		color;
+
+	color = 0x000000;
 	if (ft_strequ(e->title, "mandel"))
-	{
-		e->origin->a = MANDEL_ORIGIN_A;
-		e->origin->bi = MANDEL_ORIGIN_BI;
-		e->zoom = MANDEL_ZOOM;
-	}
+		color = init_mandel(e);
 	else if (ft_strequ(e->title, "ark"))
-	{
-		e->origin->a = ARK_ORIGIN_A;
-		e->origin->bi = ARK_ORIGIN_BI;
-		e->zoom = ARK_ZOOM;
-	}
-	else
-	{
-		e->c->a = 0.0;
-		e->c->bi = 0.0;
-		e->origin->a = 0;
-		e->origin->bi = 0;
-		if (ft_strequ(e->title, "tree"))
-			e->origin->bi = 2;
-		e->zoom = 1.0;
-	}
+		init_ark(e);
+	else if (ft_strequ(e->title, "julia"))
+		color = init_julia(e);
+	else if (ft_strequ(e->title, "tree"))
+		init_tree(e);
+	c1 = hexToRgb(color);
+	c2 = hexToRgb((0xFFFFFF - color));
+	if (!(e->palette = generate_bw_gradient_palette(c1, c2, PALETTE_SIZE)))
+		exit(-1);
 	e->step = 1;
 	e->start = 0;
 	e->range = PALETTE_SIZE - 1;
@@ -55,9 +50,7 @@ void			init_params(t_env *e)
 t_env			*init_env(char *title)
 {
 	t_env	*e;
-
-	t_color	c1 = hexToRgb(0x0000FF);
-	t_color	c2 = hexToRgb(0xFFFF00);
+	int		color;
 
 	if (!(e = malloc(sizeof(t_env))))
 		exit(-1);
@@ -72,8 +65,6 @@ t_env			*init_env(char *title)
 	if (!(e->c = malloc(sizeof(t_z))))
 		exit(-1);
 	if (!(e->origin = malloc(sizeof(t_z))))
-		exit(-1);
-	if (!(e->palette = generate_bw_gradient_palette(c1, c2, PALETTE_SIZE)))
 		exit(-1);
 	e->title = title;
 	init_params(e);
