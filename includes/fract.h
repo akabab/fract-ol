@@ -82,46 +82,44 @@ typedef struct		s_env
 /*
 **		env.c
 */
-void		free_env(t_env *e);
-void		init_params(t_env *e);
-t_env		*init_env(char *title);
+void				free_env(t_env *e);
+void				init_params(t_env *e);
+t_env				*init_env(char *title);
 
 /*
 **		draw.c
 */
-void		my_pixel_put_to_image(t_img *img, int x, int y, int color);
-void		draw_line(int color, t_coord *pt1, t_coord *pt2, t_img *e);
-
-void	draw_palette(int *palette, int size, t_env *e); //
-
+void				my_pixel_put_to_image(t_img *img, int x, int y, int color);
+void				draw_line(int color, t_coord *pt1, t_coord *pt2, t_img *e);
+void				draw_palette(int *palette, int size, t_env *e);
 
 /*
 **		hook.c
 */
-int			pointer_motion_hook(int x, int y, t_env *e);
-int			expose_hook(t_env *e);
-int			key_hook(int keycode, t_env *e);
-int			mouse_hook(int button, int x, int y, t_env *e);
+int					pointer_motion_hook(int x, int y, t_env *e);
+int					expose_hook(t_env *e);
+int					key_hook(int keycode, t_env *e);
+int					mouse_hook(int button, int x, int y, t_env *e);
 
 /*
 **		mlx_handler.c
 */
-void		mlx_handler(t_env *e);
+void				mlx_handler(t_env *e);
 
 /*
 **		complexe.c
 */
-t_z			*coord_to_z(int x, int y, t_env *e);
-double		z_xtoa(int x, t_env *e);
-double		z_ytobi(int y, t_env *e);
-int			atox(double a, t_env *e);
-int			bitoy(double bi, t_env *e);
+t_z					*coord_to_z(int x, int y, t_env *e);
+double				z_xtoa(int x, t_env *e);
+double				z_ytobi(int y, t_env *e);
+int					atox(double a, t_env *e);
+int					bitoy(double bi, t_env *e);
 
 /*
 **		tools.c
 */
-double		ft_abs_double(double n);
-double		d_power(double nb, int power);
+double				ft_abs_double(double n);
+double				d_power(double nb, int power);
 
 /*
 **		thread.c
@@ -129,12 +127,12 @@ double		d_power(double nb, int power);
 # define TH_N_THREADS	50
 # define TH_N_LINE		((int)(W_HEIGHT / TH_N_THREADS) + 1)
 
-typedef struct	s_th_data
+typedef struct		s_th_data
 {
-	t_env		*e;
-	int			start_y;
-}				t_th_data;
+	t_env	*e;
+	int		start_y;
+}					t_th_data;
 
-void		thread_compute_fract(t_env *e);
+void				thread_compute_fract(t_env *e);
 
 #endif
