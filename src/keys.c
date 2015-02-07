@@ -14,12 +14,14 @@ static int	key_release2(int keycode, t_env *e)
 		e->step--;
 	if (keycode == 48)
 		e->step++;
-	if (keycode == 49)
+	if (keycode == KEY_1)
 		e->power = 1;
-	if (keycode == 50)
+	if (keycode == KEY_2)
 		e->power = 2;
-	if (keycode == 51)
+	if (keycode == KEY_3)
 		e->power = 3;
+	if (keycode == KEY_SPACE)
+		e->show_palette = (e->show_palette == TRUE) ? FALSE : TRUE;
 	return (0);
 }
 
