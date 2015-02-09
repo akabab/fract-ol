@@ -28,7 +28,7 @@ double		z_ytobi(int y, t_env *e)
 	return ((W_HEIGHT / 2) * size - (double)y * size + e->origin->bi);
 }
 
-int			atox(double a, t_env *e)
+int			z_atox(double a, t_env *e)
 {
 	int		x;
 	double	size;
@@ -38,7 +38,7 @@ int			atox(double a, t_env *e)
 	return (x);
 }
 
-int			bitoy(double bi, t_env *e)
+int			z_bitoy(double bi, t_env *e)
 {
 	int		y;
 	double	size;

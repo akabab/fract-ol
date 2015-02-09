@@ -108,8 +108,8 @@ void				mlx_handler(t_env *e);
 t_z					*coord_to_z(int x, int y, t_env *e);
 double				z_xtoa(int x, t_env *e);
 double				z_ytobi(int y, t_env *e);
-int					atox(double a, t_env *e);
-int					bitoy(double bi, t_env *e);
+int					z_atox(double a, t_env *e);
+int					z_bitoy(double bi, t_env *e);
 
 /*
 **		tools.c

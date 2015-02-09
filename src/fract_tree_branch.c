@@ -61,10 +61,10 @@ void			branch(int deep, t_z start, t_z next, t_env *e)
 		color -= 0x110000;
 		i++;
 	}
-	first.x = atox(start.a, e);
-	first.y = bitoy(start.bi, e);
-	second.x = atox(next.a, e);
-	second.y = bitoy(next.bi, e);
+	first.x = z_atox(start.a, e);
+	first.y = z_bitoy(start.bi, e);
+	second.x = z_atox(next.a, e);
+	second.y = z_bitoy(next.bi, e);
 	draw_line(color, &first, &second, e->img);
 	deep++;
 	leaf(deep, start, next, e);
