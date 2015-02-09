@@ -16,7 +16,7 @@
 void	ft_perror(const char *msg)
 {
 	extern const int			errno;
-	extern const char * const	sys_errlist[];
+	extern const char *const	sys_errlist[];
 
 	if (msg)
 	{

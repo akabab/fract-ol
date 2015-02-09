@@ -132,8 +132,8 @@ void				criss_cross(t_env *e);
 
 typedef struct		s_th_data
 {
-	t_env	*e;
-	int		start_y;
+	t_env			*e;
+	int				start_y;
 }					t_th_data;
 
 void				thread_compute_fract(t_env *e);

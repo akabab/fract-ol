@@ -40,17 +40,17 @@ typedef struct			s_keys
 /*
 **		keys.c
 */
-int					key_press(int keycode, t_env *e);
-int					key_release(int keycode, t_env *e);
-void				manage_keys(t_env *e);
-t_keys				*init_keys(void);
+int						key_press(int keycode, t_env *e);
+int						key_release(int keycode, t_env *e);
+void					manage_keys(t_env *e);
+t_keys					*init_keys(void);
 
 /*
 **		keys_handlers.c
 */
-void				keys_power_handler(int keycode, t_env *e);
-void				keys_zoom_handler(int keycode, t_env *e);
-void				keys_arrows_handler(int keycode, t_env *e);
-void				keys_color_handler(int keycode, t_env *e);
+void					keys_power_handler(int keycode, t_env *e);
+void					keys_zoom_handler(int keycode, t_env *e);
+void					keys_arrows_handler(int keycode, t_env *e);
+void					keys_color_handler(int keycode, t_env *e);
 
 #endif
