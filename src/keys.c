@@ -16,6 +16,7 @@ int			key_release(int keycode, t_env *e)
 		free_env(e);
 		exit(0);
 	}
+	e->need_recompute = TRUE;
 	return (0);
 }
 
@@ -35,13 +36,25 @@ int			key_press(int keycode, t_env *e)
 void		manage_keys(t_env *e)
 {
 	if (e->keys->up == TRUE)
+	{
 		e->origin->bi += RANGE_ORIGIN * e->zoom;
+		e->need_recompute = TRUE;
+	}
 	if (e->keys->down == TRUE)
+	{
 		e->origin->bi -= RANGE_ORIGIN * e->zoom;
+		e->need_recompute = TRUE;
+	}
 	if (e->keys->right == TRUE)
+	{
 		e->origin->a += RANGE_ORIGIN * e->zoom;
+		e->need_recompute = TRUE;
+	}
 	if (e->keys->left == TRUE)
+	{
 		e->origin->a -= RANGE_ORIGIN * e->zoom;
+		e->need_recompute = TRUE;
+	}
 }
 
 t_keys		*init_keys(void)

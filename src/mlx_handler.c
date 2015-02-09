@@ -3,12 +3,16 @@
 static int	loop_hook(t_env *e)
 {
 	manage_keys(e);
-	if (ft_strequ(e->title, "tree"))
-		tree(e);
-	else
-		thread_compute_fract(e);
-	if (e->col->is_visible)
-		draw_palette(e->col->palette, PALETTE_SIZE, e);
+	if (e->need_recompute)
+	{
+		if (ft_strequ(e->title, "tree"))
+			tree(e);
+		else
+			thread_compute_fract(e);
+		if (e->col->is_visible)
+			draw_palette(e->col->palette, PALETTE_SIZE, e);
+		e->need_recompute = FALSE;
+	}
 	mlx_put_image_to_window(e->mlx, e->win, e->img->id, 0, 0);
 	return (0);
 }

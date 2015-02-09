@@ -26,8 +26,8 @@
 # include "ark.h"
 # include "tree.h"
 
-# define W_WIDTH			800
-# define W_HEIGHT			800
+# define W_WIDTH			600
+# define W_HEIGHT			600
 
 # define ZOOM_IN_FACTOR		0.99
 # define ZOOM_OUT_FACTOR	1.01
@@ -73,6 +73,8 @@ typedef struct		s_env
 	t_z				*origin;
 	int				power;
 	double			zoom;
+	t_bool			need_recompute;
+	t_bool			is_moving;
 }					t_env;
 
 /*

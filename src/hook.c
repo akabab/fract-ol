@@ -20,6 +20,7 @@ int				mouse_hook(int button, int x, int y, t_env *e)
 		zoom(x, y, ZOOM_IN_FACTOR, e);
 	if (button == SCROLL_DOWN)
 		zoom(x, y, ZOOM_OUT_FACTOR, e);
+	e->need_recompute = TRUE;
 	return (0);
 }
 
@@ -27,6 +28,7 @@ int				pointer_motion_hook(int x, int y, t_env *e)
 {
 	e->c->a = z_xtoa(x, e);
 	e->c->bi = z_ytobi(y, e);
+	e->need_recompute = TRUE;
 	return (0);
 }
 
