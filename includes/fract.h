@@ -16,7 +16,7 @@
 **		tools
 */
 # include "color.h"
-# include "key.h"
+# include "keys.h"
 
 /*
 **		fractals
@@ -124,7 +124,7 @@ double				d_power(double nb, int power);
 /*
 **		thread.c
 */
-# define TH_N_THREADS	50
+# define TH_N_THREADS	8
 # define TH_N_LINE		((int)(W_HEIGHT / TH_N_THREADS) + 1)
 
 typedef struct		s_th_data

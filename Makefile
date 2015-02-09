@@ -12,16 +12,19 @@ SRCS			=	src/main.c						\
 					src/env.c						\
 					src/draw.c						\
 					src/keys.c						\
+					src/keys_handlers.c				\
 					src/complex.c					\
 					src/tools.c						\
-					src/tree.c						\
-					src/branch.c					\
 					src/thread.c					\
-					src/color.c						\
+					src/color_gradient.c			\
+					src/color_convert.c				\
+					src/color_calc.c				\
 					src/tools.c						\
-					src/julia.c						\
-					src/ark.c						\
-					src/mandelbrot.c
+					src/fract_julia.c				\
+					src/fract_mandel.c				\
+					src/fract_ark.c					\
+					src/fract_tree.c				\
+					src/fract_tree_branch.c
 OBJS			=	$(SRCS:src/%.c=obj/%.o)
 
 # COLORS

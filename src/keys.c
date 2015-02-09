@@ -1,52 +1,21 @@
 #include "fract.h"
-
-static int	key_release2(int keycode, t_env *e)
-{
-	if (keycode == 45)
-		e->start--;
-	if (keycode == 61)
-		e->start++;
-	if (keycode == 91)
-		e->range--;
-	if (keycode == 93)
-		e->range++;
-	if (keycode == 57)
-		e->step--;
-	if (keycode == 48)
-		e->step++;
-	if (keycode == KEY_1)
-		e->power = 1;
-	if (keycode == KEY_2)
-		e->power = 2;
-	if (keycode == KEY_3)
-		e->power = 3;
-	if (keycode == KEY_SPACE)
-		e->show_palette = (e->show_palette == TRUE) ? FALSE : TRUE;
-	return (0);
-}
+#include "keys.h"
 
 int			key_release(int keycode, t_env *e)
 {
-	if (keycode == KEY_RIGHT)
-		e->keys->right = FALSE;
-	if (keycode == KEY_LEFT)
-		e->keys->left = FALSE;
-	if (keycode == KEY_UP)
-		e->keys->up = FALSE;
-	if (keycode == KEY_DOWN)
-		e->keys->down = FALSE;
+	keys_arrows_handler(keycode, e);
+	keys_color_handler(keycode, e);
+	keys_power_handler(keycode, e);
+	keys_zoom_handler(keycode, e);
+	if (keycode == KEY_RESET)
+		init_params(e);
+	if (keycode == KEY_SPACE)
+		e->show_palette = !(e->show_palette);
 	if (keycode == KEY_ESC)
 	{
 		free_env(e);
 		exit(0);
 	}
-	if (keycode == KEY_MORE)
-		e->zoom *= ZOOM_IN_FACTOR;
-	if (keycode == KEY_LESS)
-		e->zoom *= ZOOM_OUT_FACTOR;
-	if (keycode == KEY_RESET)
-		init_params(e);
-	key_release2(keycode, e);
 	return (0);
 }
 

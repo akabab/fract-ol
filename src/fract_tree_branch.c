@@ -54,7 +54,7 @@ void			branch(int deep, t_z start, t_z next, t_env *e)
 
 	if (deep > (int)((e->c->bi - 1.) * 5) || deep > 10)
 		return ;
-	color = 0xaa5500;
+	color = 0xAA5500;
 	i = 0;
 	while (i != deep)
 	{
