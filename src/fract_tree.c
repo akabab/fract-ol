@@ -67,5 +67,4 @@ void			init_tree(t_env *e)
 	e->origin->a = TREE_ORIGIN_A;
 	e->origin->bi = TREE_ORIGIN_BI;
 	e->zoom = TREE_ZOOM;
-	e->show_palette = FALSE;
 }

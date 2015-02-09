@@ -23,7 +23,7 @@ static int	fractal_mandelbrot3(int x, int y, t_env *e)
 	}
 	if (i == MAX_ITER)
 		return (0x000000);
-	return (e->palette[e->start + ((i * e->step) % e->range)]);
+	return (get_palette_color(e->col, i));
 }
 
 static int	fractal_mandelbrot2(int x, int y, t_env *e)
@@ -47,7 +47,7 @@ static int	fractal_mandelbrot2(int x, int y, t_env *e)
 	}
 	if (i == MAX_ITER)
 		return (0x000000);
-	return (e->palette[e->start + ((i * e->step) % e->range)]);
+	return (get_palette_color(e->col, i));
 }
 
 static int	fractal_mandelbrot1(int x, int y, t_env *e)
@@ -71,27 +71,27 @@ static int	fractal_mandelbrot1(int x, int y, t_env *e)
 	}
 	if (i == MAX_ITER)
 		return (0x000000);
-	return (e->palette[e->start + ((i * e->step) % e->range)]);
+	return (get_palette_color(e->col, i));
 }
 
 int			fractal_mandelbrot(int x, int y, t_env *e)
 {
 	if (e->power == 1)
 		return (fractal_mandelbrot1(x, y, e));
-	if (e->power == 2)
+	else if (e->power == 2)
 		return (fractal_mandelbrot2(x, y, e));
-	if (e->power == 3)
+	else if (e->power == 3)
 		return (fractal_mandelbrot3(x, y, e));
 	else
 		return (0x000000);
 }
 
-int			init_mandel(t_env *e)
+void		init_mandel(t_env *e)
 {
-	e->power = 1;
 	e->origin->a = MANDEL_ORIGIN_A;
 	e->origin->bi = MANDEL_ORIGIN_BI;
 	e->zoom = MANDEL_ZOOM;
-	e->show_palette = TRUE;
-	return (0xB8860B);
+	e->power = MANDEL_POWER;
+	e->col->col1 = MANDEL_COL1;
+	e->col->col2 = MANDEL_COL2;
 }

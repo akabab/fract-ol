@@ -3,7 +3,8 @@
 void			free_env(t_env *e)
 {
 	free(e->keys);
-	free(e->palette);
+	free(e->col->palette);
+	free(e->col);
 	free(e->c);
 	free(e->origin);
 	free(e);
@@ -24,28 +25,31 @@ static t_img	*create_new_image(t_env *e, int width, int height)
 	return (img);
 }
 
+static void		init_col_palette(t_env *e)
+{
+	t_color		c1;
+	t_color		c2;
+
+	c1 = hex_to_rgb(e->col->col1);
+	c2 = hex_to_rgb(e->col->col2);
+	if (!(e->col->palette = gen_bw_gradient_palette(c1, c2, PALETTE_SIZE)))
+		exit(-1);
+	e->col->step = 1;
+	e->col->start = 0;
+	e->col->range = PALETTE_SIZE - 1;
+	e->col->is_visible = FALSE;
+}
+
 void			init_params(t_env *e)
 {
-	t_color	c1;
-	t_color	c2;
-	int		color;
-
-	color = 0x000000;
 	if (ft_strequ(e->title, "mandel"))
-		color = init_mandel(e);
+		init_mandel(e);
 	else if (ft_strequ(e->title, "ark"))
 		init_ark(e);
 	else if (ft_strequ(e->title, "julia"))
-		color = init_julia(e);
+		init_julia(e);
 	else if (ft_strequ(e->title, "tree"))
 		init_tree(e);
-	c1 = hex_to_rgb(color);
-	c2 = hex_to_rgb((0xFFFFFF - color));
-	if (!(e->palette = generate_bw_gradient_palette(c1, c2, PALETTE_SIZE)))
-		exit(-1);
-	e->step = 1;
-	e->start = 0;
-	e->range = PALETTE_SIZE - 1;
 }
 
 t_env			*init_env(char *title)
@@ -62,11 +66,14 @@ t_env			*init_env(char *title)
 		exit(-1);
 	if (!(e->keys = init_keys()))
 		exit(-1);
+	if (!(e->col = malloc(sizeof(t_col_palette))))
+		exit(-1);
 	if (!(e->c = malloc(sizeof(t_z))))
 		exit(-1);
 	if (!(e->origin = malloc(sizeof(t_z))))
 		exit(-1);
 	e->title = title;
 	init_params(e);
+	init_col_palette(e);
 	return (e);
 }

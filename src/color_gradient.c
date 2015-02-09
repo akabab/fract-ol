@@ -1,6 +1,11 @@
 #include "color.h"
 
-int		*generate_bw_gradient_palette(t_color col1, t_color col2, int size)
+int		get_palette_color(t_col_palette *c, int i)
+{
+	return (c->palette[c->start + ((i * c->step) % c->range)]);
+}
+
+int		*gen_bw_gradient_palette(t_color col1, t_color col2, int size)
 {
 	int			*palette;
 	int			i;
@@ -28,7 +33,7 @@ int		*generate_bw_gradient_palette(t_color col1, t_color col2, int size)
 	return (palette);
 }
 
-int		*generate_gradient_palette(t_color col1, t_color col2, int size)
+int		*gen_gradient_palette(t_color col1, t_color col2, int size)
 {
 	int			*palette;
 	int			i;

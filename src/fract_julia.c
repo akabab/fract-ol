@@ -20,7 +20,7 @@ static int	fractal_julia3(int x, int y, t_env *e)
 	}
 	if (i == MAX_ITER)
 		return (0x000000);
-	return (e->palette[e->start + ((i * e->step) % e->range)]);
+	return (get_palette_color(e->col, i));
 }
 
 static int	fractal_julia2(int x, int y, t_env *e)
@@ -41,7 +41,7 @@ static int	fractal_julia2(int x, int y, t_env *e)
 	}
 	if (i == MAX_ITER)
 		return (0x000000);
-	return (e->palette[e->start + ((i * e->step) % e->range)]);
+	return (get_palette_color(e->col, i));
 }
 
 static int	fractal_julia1(int x, int y, t_env *e)
@@ -62,7 +62,7 @@ static int	fractal_julia1(int x, int y, t_env *e)
 	}
 	if (i == MAX_ITER)
 		return (0x000000);
-	return (e->palette[e->start + ((i * e->step) % e->range)]);
+	return (get_palette_color(e->col, i));
 }
 
 int			fractal_julia(int x, int y, t_env *e)
@@ -77,14 +77,14 @@ int			fractal_julia(int x, int y, t_env *e)
 		return (0x000000);
 }
 
-int			init_julia(t_env *e)
+void		init_julia(t_env *e)
 {
-	e->power = 1;
-	e->c->a = 0.0;
-	e->c->bi = 0.0;
-	e->origin->a = 0;
-	e->origin->bi = 0;
-	e->zoom = 1.0;
-	e->show_palette = TRUE;
-	return (0x4169E1);
+	e->c->a = JULIA_A;
+	e->c->bi = JULIA_BI;
+	e->origin->a = JULIA_ORIGIN_A;
+	e->origin->bi = JULIA_ORIGIN_BI;
+	e->zoom = JULIA_ZOOM;
+	e->power = JULIA_POWER;
+	e->col->col1 = JULIA_COL1;
+	e->col->col2 = JULIA_COL2;
 }

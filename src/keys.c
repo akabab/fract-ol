@@ -10,7 +10,7 @@ int			key_release(int keycode, t_env *e)
 	if (keycode == KEY_RESET)
 		init_params(e);
 	if (keycode == KEY_SPACE)
-		e->show_palette = !(e->show_palette);
+		e->col->is_visible = !(e->col->is_visible);
 	if (keycode == KEY_ESC)
 	{
 		free_env(e);

@@ -67,16 +67,12 @@ typedef struct		s_env
 	t_img			*img;
 	char			*title;
 	t_keys			*keys;
-	int				*palette;
+	t_col_palette	*col;
 	int				(*fract)(int, int, struct s_env *);
 	t_z				*c;
 	t_z				*origin;
 	int				power;
 	double			zoom;
-	int				step;
-	int				start;
-	int				range;
-	t_bool			show_palette;
 }					t_env;
 
 /*

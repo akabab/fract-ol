@@ -34,15 +34,15 @@ void		keys_arrows_handler(int keycode, t_env *e)
 void		keys_color_handler(int keycode, t_env *e)
 {
 	if (keycode == 45)
-		e->start--;
+		e->col->start = fmax(0, e->col->start - 1);
 	if (keycode == 61)
-		e->start++;
+		e->col->start = fmax(0, (e->col->start + 1) % PALETTE_SIZE);
 	if (keycode == 91)
-		e->range--;
+		e->col->range = fmax(1, e->col->range - 1);
 	if (keycode == 93)
-		e->range++;
+		e->col->range = fmax(1, (e->col->range + 1) % PALETTE_SIZE);
 	if (keycode == 57)
-		e->step--;
+		e->col->step--;
 	if (keycode == 48)
-		e->step++;
+		e->col->step++;
 }

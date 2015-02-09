@@ -41,6 +41,4 @@ void		init_ark(t_env *e)
 	e->origin->a = ARK_ORIGIN_A;
 	e->origin->bi = ARK_ORIGIN_BI;
 	e->zoom = ARK_ZOOM;
-	e->show_palette = FALSE;
-	return ;
 }

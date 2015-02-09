@@ -93,9 +93,9 @@ void	draw_palette(int *palette, int size, t_env *e)
 	}
 	x = 0;
 	while (x++ < 25)
-		my_pixel_put_to_image(e->img, x, e->start, 0xFFFFF);
+		my_pixel_put_to_image(e->img, x, e->col->start, 0xFFFFFF);
 	x = 0;
 	while (x++ < 25)
 		my_pixel_put_to_image(e->img, x,
-				(e->start + e->range) % PALETTE_SIZE, 0xFFFFF);
+				(e->col->start + e->col->range) % PALETTE_SIZE, 0xFFFFFF);
 }
