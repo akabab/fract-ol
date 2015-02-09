@@ -74,7 +74,7 @@ typedef struct		s_env
 	int				power;
 	double			zoom;
 	t_bool			need_recompute;
-	t_bool			is_moving;
+	t_bool			multi_threads;
 }					t_env;
 
 /*
@@ -118,6 +118,11 @@ int					z_bitoy(double bi, t_env *e);
 */
 double				ft_abs_double(double n);
 double				d_power(double nb, int power);
+
+/*
+**		criss_cross.c
+*/
+void				criss_cross(t_env *e);
 
 /*
 **		thread.c

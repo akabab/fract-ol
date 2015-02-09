@@ -8,7 +8,7 @@ static int	loop_hook(t_env *e)
 		if (ft_strequ(e->title, "tree"))
 			tree(e);
 		else
-			thread_compute_fract(e);
+			e->multi_threads ? thread_compute_fract(e) : criss_cross(e);
 		if (e->col->is_visible)
 			draw_palette(e->col->palette, PALETTE_SIZE, e);
 		e->need_recompute = FALSE;

@@ -15,6 +15,7 @@ SRCS			=	src/main.c						\
 					src/keys_handlers.c				\
 					src/complex.c					\
 					src/tools.c						\
+					src/criss_cross.c				\
 					src/thread.c					\
 					src/color_gradient.c			\
 					src/color_convert.c				\

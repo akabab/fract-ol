@@ -33,6 +33,8 @@ void		keys_arrows_handler(int keycode, t_env *e)
 
 void		keys_color_handler(int keycode, t_env *e)
 {
+	if (keycode == KEY_C)
+		e->col->is_visible = !e->col->is_visible;
 	if (keycode == 45)
 		e->col->start = fmax(0, e->col->start - 1);
 	if (keycode == 61)

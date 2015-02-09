@@ -76,5 +76,6 @@ t_env			*init_env(char *title)
 	init_params(e);
 	init_col_palette(e);
 	e->need_recompute = TRUE;
+	e->multi_threads = TRUE;
 	return (e);
 }

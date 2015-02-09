@@ -9,8 +9,8 @@ int			key_release(int keycode, t_env *e)
 	keys_zoom_handler(keycode, e);
 	if (keycode == KEY_RESET)
 		init_params(e);
-	if (keycode == KEY_SPACE)
-		e->col->is_visible = !(e->col->is_visible);
+	if (keycode == KEY_T)
+		e->multi_threads = !e->multi_threads;
 	if (keycode == KEY_ESC)
 	{
 		free_env(e);
