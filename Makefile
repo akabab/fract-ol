@@ -1,5 +1,5 @@
-CC				=	gcc -lpthread
-FLAGS			=	-g -Wall -Wextra -Werror
+CC				=	gcc -lpthread -O2
+FLAGS			=	-Wall -Wextra -Werror
 NAME			=	fractol
 LIB				=	libft/libft.a
 LIB_PATH		=	libft/
