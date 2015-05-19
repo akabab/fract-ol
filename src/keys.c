@@ -6,7 +6,7 @@
 /*   By: ycribier <ycribier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/09 17:52:18 by ycribier          #+#    #+#             */
-/*   Updated: 2015/02/09 17:54:09 by ycribier         ###   ########.fr       */
+/*   Updated: 2015/05/19 18:50:48 by ycribier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,11 @@ int			key_release(int keycode, t_env *e)
 	keys_color_handler(keycode, e);
 	keys_power_handler(keycode, e);
 	keys_zoom_handler(keycode, e);
-	if (keycode == KEY_RESET)
+	if (keycode == KEY_R)
 		init_params(e);
 	if (keycode == KEY_T)
 		e->multi_threads = !e->multi_threads;
-	if (keycode == KEY_ESC)
+	if (keycode == KEY_ESCAPE)
 	{
 		free_env(e);
 		exit(0);

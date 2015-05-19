@@ -6,7 +6,7 @@
 /*   By: ycribier <ycribier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/09 17:52:18 by ycribier          #+#    #+#             */
-/*   Updated: 2015/02/09 17:54:10 by ycribier         ###   ########.fr       */
+/*   Updated: 2015/05/19 18:51:51 by ycribier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,9 @@ void		keys_power_handler(int keycode, t_env *e)
 
 void		keys_zoom_handler(int keycode, t_env *e)
 {
-	if (keycode == KEY_MORE)
+	if (keycode == KEY_EQUAL)
 		e->zoom *= ZOOM_IN_FACTOR;
-	if (keycode == KEY_LESS)
+	if (keycode == KEY_MINUS)
 		e->zoom *= ZOOM_OUT_FACTOR;
 }
 
