@@ -6,7 +6,7 @@
 /*   By: ycribier <ycribier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/11/27 18:53:26 by ycribier          #+#    #+#             */
-/*   Updated: 2013/12/29 20:31:53 by ycribier         ###   ########.fr       */
+/*   Updated: 2015/04/07 17:37:23 by ycribier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,25 @@ char	**ft_strsplit(char const *s, char c)
 		s += word_size;
 		i++;
 	}
-	ptr[i] = '\0';
+	ptr[i] = NULL;
 	return (ptr);
+}
+
+char	**ft_strsplit_once(char const *s, char c)
+{
+	char	*at;
+	size_t	at_index;
+	char	**tab;
+
+	tab = NULL;
+	if ((at = ft_strchr(s, c)))
+	{
+		if (!(tab = ft_memalloc(sizeof(char *) * (2 + 1))))
+			return (NULL);
+		at_index = at - s;
+		tab[0] = ft_strsub(s, 0, at_index);
+		tab[1] = ft_strsub(s, at_index + 1, ft_strlen(s) - (at_index + 1));
+		tab[2] = NULL;
+	}
+	return (tab);
 }

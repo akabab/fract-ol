@@ -6,27 +6,27 @@
 /*   By: ycribier <ycribier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/09 17:52:18 by ycribier          #+#    #+#             */
-/*   Updated: 2015/02/09 18:37:18 by ycribier         ###   ########.fr       */
+/*   Updated: 2015/05/19 18:37:16 by ycribier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FRACT_H
 # define FRACT_H
 
-# include "libft.h"
-# include "list.h"
 # include <stdlib.h>
 # include <stdio.h>
 # include <string.h>
 # include <unistd.h>
 # include <pthread.h>
 # include <mlx.h>
-# include </usr/X11R6/include/X11/X.h>
-# include </usr/X11R6/include/X11/Xutil.h>
+# include "libft.h"
+# include "list.h"
 
 /*
 **		tools
 */
+# include "x.h"
+# include "structs.h"
 # include "color.h"
 # include "keys.h"
 
@@ -48,46 +48,6 @@
 # define RANGE_ORIGIN		0.005
 
 # define MAX_ITER			360
-
-typedef struct		s_img
-{
-	void			*id;
-	int				width;
-	int				height;
-	char			*addr;
-	int				bpp;
-	int				lsize;
-	int				endian;
-}					t_img;
-
-typedef struct		s_z
-{
-	double			a;
-	double			bi;
-}					t_z;
-
-typedef struct		s_coord
-{
-	int				x;
-	int				y;
-}					t_coord;
-
-typedef struct		s_env
-{
-	void			*mlx;
-	void			*win;
-	t_img			*img;
-	char			*title;
-	t_keys			*keys;
-	t_col_palette	*col;
-	int				(*fract)(int, int, struct s_env *);
-	t_z				*c;
-	t_z				*origin;
-	int				power;
-	double			zoom;
-	t_bool			need_recompute;
-	t_bool			multi_threads;
-}					t_env;
 
 /*
 **		env.c

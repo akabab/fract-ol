@@ -6,17 +6,18 @@
 /*   By: ycribier <ycribier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/12/31 15:58:53 by ycribier          #+#    #+#             */
-/*   Updated: 2015/01/29 19:51:10 by ycribier         ###   ########.fr       */
+/*   Updated: 2015/02/19 18:09:59 by ycribier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
+#include <stdlib.h>
 #include "libft.h"
 
 void	ft_perror(const char *msg)
 {
-	extern const int			errno;
-	extern const char *const	sys_errlist[];
+	extern const int		errno;
+	extern const char		*sys_errlist[];
 
 	if (msg)
 	{
@@ -35,5 +36,5 @@ void	error_msg(char *message)
 void	error_msg_exit(char *message)
 {
 	error_msg(message);
-	_exit(-1);
+	exit(-1);
 }

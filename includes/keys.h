@@ -6,7 +6,7 @@
 /*   By: ycribier <ycribier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/09 17:52:18 by ycribier          #+#    #+#             */
-/*   Updated: 2015/02/09 17:53:29 by ycribier         ###   ########.fr       */
+/*   Updated: 2015/05/19 18:18:47 by ycribier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,15 +39,7 @@
 # define SCROLL_UP		4
 # define SCROLL_DOWN	5
 
-typedef struct s_env	t_env;
-
-typedef struct			s_keys
-{
-	t_bool	up;
-	t_bool	down;
-	t_bool	right;
-	t_bool	left;
-}						t_keys;
+# include "structs.h"
 
 /*
 **		keys.c

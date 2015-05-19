@@ -6,7 +6,7 @@
 /*   By: ycribier <ycribier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/07 12:19:31 by ycribier          #+#    #+#             */
-/*   Updated: 2014/02/19 16:13:41 by ycribier         ###   ########.fr       */
+/*   Updated: 2015/03/04 17:11:57 by ycribier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,15 +18,11 @@ t_dlist		*dlist_create(void)
 {
 	t_dlist	*dlist;
 
-	dlist = malloc(sizeof(t_dlist));
-	if (!dlist)
+	if (!(dlist = ft_memalloc(sizeof(t_dlist))))
 	{
 		ft_perror(NULL);
 		return (NULL);
 	}
-	dlist->count = 0;
-	dlist->first = NULL;
-	dlist->last = NULL;
 	return (dlist);
 }
 
@@ -38,9 +34,7 @@ void		dlist_destroy(t_dlist *dlist)
 	while (cur != NULL)
 	{
 		if (cur->prev)
-		{
 			free(cur->prev);
-		}
 		cur = cur->next;
 	}
 	free(dlist->last);

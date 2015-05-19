@@ -6,7 +6,7 @@
 /*   By: ycribier <ycribier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/09 17:52:18 by ycribier          #+#    #+#             */
-/*   Updated: 2015/02/09 17:53:19 by ycribier         ###   ########.fr       */
+/*   Updated: 2015/05/19 18:14:08 by ycribier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # define ARK_ORIGIN_BI		0.017875
 # define ARK_ZOOM			0.028505
 
-typedef struct s_env	t_env;
+# include "structs.h"
 
 int		fractal_ark(int x, int y, t_env *e);
 void	init_ark(t_env *e);

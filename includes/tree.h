@@ -6,7 +6,7 @@
 /*   By: ycribier <ycribier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/09 17:52:18 by ycribier          #+#    #+#             */
-/*   Updated: 2015/02/09 17:53:33 by ycribier         ###   ########.fr       */
+/*   Updated: 2015/05/19 18:16:56 by ycribier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,7 @@
 # define TREE_ORIGIN_BI		2
 # define TREE_ZOOM	1.09
 
-typedef struct s_env	t_env;
-typedef struct s_z		t_z;
+# include "structs.h"
 
 void		tree(t_env *e);
 void		branch(int deep, t_z start, t_z next, t_env *e);

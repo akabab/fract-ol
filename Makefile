@@ -1,11 +1,12 @@
-CC				=	gcc -lpthread -O2
-FLAGS			=	-Wall -Wextra -Werror
+CC				=	clang
 NAME			=	fractol
-LIB				=	libft/libft.a
+FLAGS			=	-Wall -Wextra -Werror
+FRAMEWORKS		=	-framework OpenGL -framework AppKit -lpthread
+MLX_PATH		=	minilibx_macos/
 LIB_PATH		=	libft/
-INCLUDES		=	-I $(LIB_PATH)./includes -I ./includes -I /usr/X11/include
-DIR_LIBS		=	/usr/X11/lib
-LDFLAGS			=	-L$(DIR_LIBS) -lXext -lX11 -lmlx
+LIB				=	$(LIB_PATH)libft.a
+LIB_LINK		=	-L $(LIB_PATH) -lft -L $(MLX_PATH) -lmlx # -L /usr/local/lib -lmlx
+INCLUDES		=	-I $(LIB_PATH)includes -I ./includes -I $(MLX_PATH) # -I /usr/local/include
 SRCS			=	src/main.c						\
 					src/hook.c						\
 					src/mlx_handler.c				\
@@ -43,7 +44,7 @@ OK				=	$(C_OK)OK$(C_NO)
 all: obj $(NAME)
 
 $(NAME): $(LIB) $(OBJS)
-	@$(CC) $(FLAGS) -o $@ $^ $(LDFLAGS) -L $(LIB_PATH) -lft
+	@$(CC) $(FLAGS) $(LIB_LINK) $(FRAMEWORKS) -o $@ $^
 	@echo "Compiling" [ $(NAME) ] $(SUCCESS)
 
 $(LIB):
@@ -52,8 +53,8 @@ $(LIB):
 obj:
 	@mkdir -p obj
 
-obj/%.o: src/%.c ./includes/fract.h
-	@$(CC) $(FLAGS) -c -o $@ $< $(INCLUDES)
+obj/%.o: src/%.c ./includes/*.h
+	@$(CC) $(FLAGS) $(INCLUDES) -c -o $@ $<
 	@echo "Linking" [ $< ] $(OK)
 
 clean:

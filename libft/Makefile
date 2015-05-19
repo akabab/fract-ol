@@ -6,11 +6,11 @@
 #    By: ycribier <ycribier@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2013/11/26 16:39:11 by ycribier          #+#    #+#              #
-#    Updated: 2015/01/29 19:50:52 by ycribier         ###   ########.fr        #
+#    Updated: 2015/02/25 14:41:19 by ycribier         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-CC		=	cc -g -O2 $(FLAGS)
+CC		=	gcc -O2 $(FLAGS)
 FLAGS	=	-Wall -Wextra -Werror
 NAME	=	libft.a
 INCLUDES=	./includes
@@ -43,6 +43,7 @@ SRCS	=	ft_memset.c					\
 			ft_toupper.c				\
 			ft_tolower.c				\
 			ft_str_isdigit.c			\
+			ft_str_isint.c				\
 			ft_memalloc.c				\
 			ft_memdel.c					\
 			ft_strnew.c					\
@@ -58,6 +59,7 @@ SRCS	=	ft_memset.c					\
 			ft_strjoin.c				\
 			ft_strtrim.c				\
 			ft_strsplit.c				\
+			ft_strreplace.c				\
 			ft_itoa.c					\
 			ft_putchar.c				\
 			ft_putchar_fd.c				\

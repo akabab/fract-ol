@@ -6,7 +6,7 @@
 /*   By: ycribier <ycribier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/09 17:52:18 by ycribier          #+#    #+#             */
-/*   Updated: 2015/02/09 17:53:26 by ycribier         ###   ########.fr       */
+/*   Updated: 2015/05/19 18:14:22 by ycribier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 # define JULIA_COL1			0x4169E1
 # define JULIA_COL2			0xE1B941
 
-typedef struct s_env	t_env;
+# include "structs.h"
 
 int			fractal_julia(int x, int y, t_env *e);
 void		init_julia(t_env *e);

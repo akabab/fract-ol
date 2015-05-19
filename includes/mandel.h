@@ -6,7 +6,7 @@
 /*   By: ycribier <ycribier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/09 17:52:18 by ycribier          #+#    #+#             */
-/*   Updated: 2015/02/09 18:06:48 by ycribier         ###   ########.fr       */
+/*   Updated: 2015/05/19 18:16:55 by ycribier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 # define MANDEL_COL1		0x30F2BB
 # define MANDEL_COL2		0xF23067
 
-typedef struct s_env	t_env;
+# include "structs.h"
 
 int			fractal_mandelbrot(int x, int y, t_env *e);
 void		init_mandel(t_env *e);
