@@ -25,9 +25,9 @@ void		keys_power_handler(int keycode, t_env *e)
 
 void		keys_zoom_handler(int keycode, t_env *e)
 {
-	if (keycode == KEY_EQUAL)
+	if (keycode == KEY_KEYPADPLUS)
 		e->zoom *= ZOOM_IN_FACTOR;
-	if (keycode == KEY_MINUS)
+	if (keycode == KEY_KEYPADMINUS)
 		e->zoom *= ZOOM_OUT_FACTOR;
 }
 
@@ -47,16 +47,16 @@ void		keys_color_handler(int keycode, t_env *e)
 {
 	if (keycode == KEY_C)
 		e->col->is_visible = !e->col->is_visible;
-	if (keycode == 45)
+	if (keycode == KEY_9)
 		e->col->start = fmax(0, e->col->start - 1);
-	if (keycode == 61)
+	if (keycode == KEY_0)
 		e->col->start = fmax(0, (e->col->start + 1) % PALETTE_SIZE);
-	if (keycode == 91)
+	if (keycode == KEY_LEFTBRACKET)
 		e->col->range = fmax(1, e->col->range - 1);
-	if (keycode == 93)
+	if (keycode == KEY_RIGHTBRACKET)
 		e->col->range = fmax(1, (e->col->range + 1) % PALETTE_SIZE);
-	if (keycode == 57)
+	if (keycode == KEY_MINUS)
 		e->col->step--;
-	if (keycode == 48)
+	if (keycode == KEY_PLUS)
 		e->col->step++;
 }

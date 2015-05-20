@@ -66,6 +66,7 @@ enum {
 	KEY_6                    = 0X16,
 	KEY_5                    = 0X17,
 	KEY_EQUAL                = 0X18,
+	KEY_PLUS                 = 0X18,
 	KEY_9                    = 0X19,
 	KEY_7                    = 0X1A,
 	KEY_MINUS                = 0X1B,
