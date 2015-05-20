@@ -15,29 +15,6 @@
 
 # include "structs.h"
 
-// # define KEY_UP			65362
-// # define KEY_DOWN		65364
-// # define KEY_LEFT		65361
-// # define KEY_RIGHT		65363
-// # define KEY_ESC		65307
-// # define KEY_SHIFT_L	65505
-// # define KEY_SHIFT_R	65505
-// # define KEY_MORE		65451
-// # define KEY_LESS		65453
-// # define KEY_SPACE		32
-// # define KEY_W			119
-// # define KEY_A			97
-// # define KEY_S			115
-// # define KEY_D			100
-// # define KEY_C			99
-// # define KEY_T			116
-// # define KEY_RESET		114
-// # define KEY_1			49
-// # define KEY_2			50
-// # define KEY_3			51
-// # define KEY_4			52
-// # define KEY_5			53
-
 # define SCROLL_UP		4
 # define SCROLL_DOWN	5
 
