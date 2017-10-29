@@ -1,0 +1,7 @@
+# objects
+obj/
+**/*.o
+
+# bin
+fractol
+
