@@ -28,38 +28,71 @@ static void		*match_fractal(char *av)
 	return (NULL);
 }
 
-static void		wait_child(int *pid)
+static void		wait_child(int pid)
 {
 	int		status;
 
-	*pid = wait(&status);
+	waitpid(pid, &status, 0);
+}
+
+static t_bool	is_child_process(int pid)
+{
+	return (pid == 0);
+}
+
+static void		load(char *fractal)
+{
+	t_env		*e;
+	void		*ft_fract;
+
+	if (!(ft_fract = match_fractal(fractal)))
+		return ;
+	e = init_env(fractal);
+	e->fract = ft_fract;
+	mlx_handler(e);
 }
 
 int				main(int ac, char *av[])
 {
-	int			i;
-	t_env		*e;
-	void		*ft_fract;
+	char		*path;
 	int			pid;
+	int			status;
 
+	path = av[0];
 	if (ac < 2)
-		ft_printf("Usage: %s <fract> ... {julia, mandel, ark, tree, ...}\n",
-				av[0]);
-	i = 1;
-	while (i < ac)
-	{
-		if ((ft_fract = match_fractal(av[i])))
-		{
-			if (!(pid = fork()))
-			{
-				e = init_env(av[i]);
-				e->fract = ft_fract;
-				mlx_handler(e);
-			}
-		}
-		i++;
+		ft_printf("Usage: %s <fract {julia, mandel, ark, tree, ...}>\n", path);
+	else if (ac == 2) {
+		printf(">> Loading.. '%s'\n", av[1]);
+		load(av[1]);
 	}
-	while (i-- > 1)
-		wait_child(&pid);
+	else
+	{
+		int i = 1;
+		while (i < ac)
+		{
+			pid = fork();
+			if (is_child_process(pid)) {
+				printf("(child) execv '%s'\n", av[i]);
+				execv(path, (char *[]) { path, av[i], NULL });
+				printf("execv failed\n");
+			}
+			else
+			{
+				if (OPEN_IN_SERIES)
+				{
+					printf("(parent) waiting [%d]\n", pid);
+					wait_child(pid);
+					printf("process [%d] terminated\n", pid);
+				}
+			}
+			i++;
+		}
+	}
+	if (!OPEN_IN_SERIES)
+	{
+		while ((pid = wait(&status)) > 0)
+    	    printf("waiting %d..\n", pid);
+	}
+	printf("DONE\n");
 	return (0);
 }

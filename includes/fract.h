@@ -49,6 +49,8 @@
 
 # define MAX_ITER			360
 
+# define OPEN_IN_SERIES		TRUE
+
 /*
 **		env.c
 */
