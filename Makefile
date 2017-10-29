@@ -3,10 +3,11 @@ NAME			=	fractol
 FLAGS			=	-Wall -Wextra -Werror
 FRAMEWORKS		=	-framework OpenGL -framework AppKit -lpthread
 MLX_PATH		=	minilibx_macos-sierra/
+MLX				=	$(MLX_PATH)/libmlx.a
 LIB_PATH		=	libft/
 LIB				=	$(LIB_PATH)libft.a
-LIB_LINK		=	-L $(LIB_PATH) -lft -L $(MLX_PATH) -lmlx # -L /usr/local/lib -lmlx
-INCLUDES		=	-I $(LIB_PATH)includes -I ./includes -I $(MLX_PATH) # -I /usr/local/include
+LIB_LINK		=	-L $(LIB_PATH) -lft -L $(MLX_PATH) -lmlx
+INCLUDES		=	-I $(LIB_PATH)includes -I ./includes -I $(MLX_PATH)
 SRCS			=	src/main.c						\
 					src/hook.c						\
 					src/mlx_handler.c				\
@@ -43,9 +44,12 @@ OK				=	$(C_OK)OK$(C_NO)
 
 all: obj $(NAME)
 
-$(NAME): $(LIB) $(OBJS)
+$(NAME): $(MLX) $(LIB) $(OBJS)
 	@$(CC) $(FLAGS) $(LIB_LINK) $(FRAMEWORKS) -o $@ $^
 	@echo "Compiling" [ $(NAME) ] $(SUCCESS)
+
+$(MLX):
+	@make -C $(MLX_PATH)
 
 $(LIB):
 	@make -C $(LIB_PATH)
@@ -60,6 +64,7 @@ obj/%.o: src/%.c ./includes/*.h
 clean:
 	@rm -f $(OBJS)
 	@rm -rf obj
+	@make -C $(MLX_PATH) clean
 	@echo "Cleaning" [ $(NAME) ] "..." $(OK)
 
 fclean: clean
