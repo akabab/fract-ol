@@ -41,8 +41,8 @@
 # define W_WIDTH			600
 # define W_HEIGHT			600
 
-# define ZOOM_IN_FACTOR		0.99
-# define ZOOM_OUT_FACTOR	1.01
+# define ZOOM_IN_FACTOR		0.9
+# define ZOOM_OUT_FACTOR	1.1
 
 # define RANGE_C			0.02
 # define RANGE_ORIGIN		0.005
