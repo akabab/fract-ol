@@ -12,19 +12,18 @@
 
 #include "fract.h"
 
-static void		*match_fractal(char *av)
+static void		*match_fractal(char *fractal)
 {
-	if (ft_strequ(av, "julia"))
+	if (ft_strequ(fractal, "julia"))
 		return (&fractal_julia);
-	else if (ft_strequ(av, "mandel"))
+	else if (ft_strequ(fractal, "mandel"))
 		return (&fractal_mandelbrot);
-	else if (ft_strequ(av, "ark"))
+	else if (ft_strequ(fractal, "ark"))
 		return (&fractal_ark);
-	else if (ft_strequ(av, "tree"))
+	else if (ft_strequ(fractal, "tree"))
 		return (&tree);
 	else
-		ft_printf("[%s] is invalid. <fract> {julia, mandel, ark, tree, ...}\n",
-				av);
+		ft_printf("fractal '%s' not found\n", fractal);
 	return (NULL);
 }
 
@@ -47,6 +46,7 @@ static void		load(char *fractal)
 
 	if (!(ft_fract = match_fractal(fractal)))
 		return ;
+	ft_printf("> Loading '%s'..\n", fractal);
 	e = init_env(fractal);
 	e->fract = ft_fract;
 	mlx_handler(e);
@@ -54,45 +54,27 @@ static void		load(char *fractal)
 
 int				main(int ac, char *av[])
 {
-	char		*path;
 	int			pid;
 	int			status;
 
-	path = av[0];
 	if (ac < 2)
-		ft_printf("Usage: %s <fract {julia, mandel, ark, tree, ...}>\n", path);
-	else if (ac == 2) {
-		printf(">> Loading.. '%s'\n", av[1]);
+		ft_printf("Usage: %s <fract {julia, mandel, ark, tree, ...}>\n", av[0]);
+	else if (ac == 2)
 		load(av[1]);
-	}
 	else
 	{
 		int i = 1;
 		while (i < ac)
 		{
 			pid = fork();
-			if (is_child_process(pid)) {
-				printf("(child) execv '%s'\n", av[i]);
-				execv(path, (char *[]) { path, av[i], NULL });
-				printf("execv failed\n");
-			}
-			else
-			{
-				if (OPEN_IN_SERIES)
-				{
-					printf("(parent) waiting [%d]\n", pid);
-					wait_child(pid);
-					printf("process [%d] terminated\n", pid);
-				}
-			}
+			if (is_child_process(pid))
+				execv(av[0], (char *[]) { av[0], av[i], NULL });
+			if (OPEN_IN_SERIES)
+				wait_child(pid);
 			i++;
 		}
 	}
 	if (!OPEN_IN_SERIES)
-	{
-		while ((pid = wait(&status)) > 0)
-    	    printf("waiting %d..\n", pid);
-	}
-	printf("DONE\n");
+		while ((pid = wait(&status)) > 0) {}
 	return (0);
 }
