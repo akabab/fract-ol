@@ -1,7 +1,9 @@
+# bin
+fractol
+
 # objects
 obj/
 **/*.o
 
-# bin
-fractol
-
+# libs
+**/*.a
